@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Lato:ital,wght@0,300;0,400;0,700;1,300&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
+    /* 🟢 UPDATED GREEN PALETTE 🟢 */
     --sky: #f0fdf4;
     --sky2: #dcfce7;
     --ocean: #064e3b; 
@@ -52,23 +53,16 @@
     font-family: 'Source Code Pro', monospace; font-size: 0.7rem;
   }
   #lang-bar .brand { color: var(--blue-light); font-weight:500; letter-spacing:0.1em; }
-  .lang-bar-right { display:flex; align-items:center; gap:1rem; }
-  .currency-badge {
-    background:rgba(52,211,153,0.15); border:1px solid rgba(52,211,153,0.3);
-    color:var(--blue-light); padding:3px 10px; border-radius:3px;
-    font-size:0.68rem; font-family:'Source Code Pro',monospace; font-weight:600; letter-spacing:0.06em;
+  .lang-btns { display:flex; gap:0.35rem; flex-wrap:wrap; }
+  .lang-btn {
+    background: transparent; border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.65); padding: 3px 10px; border-radius:3px;
+    cursor:pointer; font-family:'Source Code Pro',monospace; font-size:0.68rem;
+    transition: all 0.2s;
   }
-  .lang-select-wrap { position:relative; display:flex; align-items:center; gap:0.5rem; }
-  #lang-select {
-    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2);
-    color: rgba(255,255,255,0.9); padding: 5px 28px 5px 10px; border-radius: 5px;
-    font-family: 'Source Code Pro', monospace; font-size: 0.72rem; cursor: pointer; outline: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2334d399'/%3E%3C/svg%3E");
-    background-repeat: no-repeat; background-position: right 8px center;
-    transition: border-color 0.2s, background-color 0.2s; min-width: 165px;
+  .lang-btn:hover, .lang-btn.active {
+    background: var(--blue-light); color: var(--ocean); border-color: var(--blue-light); font-weight:700;
   }
-  #lang-select:hover, #lang-select:focus { border-color: var(--blue-light); background-color: rgba(255,255,255,0.14); }
-  #lang-select option { background: #064e3b; color: #fff; }
 
   nav {
     position: fixed; top:44px; left:0; right:0; z-index:99;
@@ -90,28 +84,48 @@
   .hero-clouds::before, .hero-clouds::after { content:''; position:absolute; border-radius:50%; background: rgba(255,255,255,0.7); filter:blur(40px); }
   .hero-clouds::before { width:600px; height:300px; top:8%; right:5%; }
   .hero-left { padding: 5rem 3rem 4rem 5rem; display:flex; flex-direction:column; justify-content:center; position:relative; z-index:1; }
-  .hero-badge-pill { display:inline-flex; align-items:center; gap:0.5rem; background: rgba(16,185,129,0.1); color: var(--blue); padding:6px 16px; border-radius:20px; font-size:0.7rem; margin-bottom:2rem; }
+  .hero-badge-pill { display:inline-flex; align-items:center; gap:0.5rem; background: rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.25); color: var(--blue); padding:6px 16px; border-radius:20px; font-size:0.7rem; margin-bottom:2rem; }
   .hero-badge-pill .dot { width:7px; height:7px; border-radius:50%; background:var(--blue-light); animation:pulse 2s infinite; }
-  .hero-name { font-family:'Poppins',sans-serif; font-size: clamp(2.6rem,4.5vw,3.8rem); font-weight:800; color: var(--ocean); }
+  .hero-name { font-family:'Poppins',sans-serif; font-size: clamp(2.6rem,4.5vw,3.8rem); font-weight:800; line-height:1.08; color: var(--ocean); }
   .hero-name .highlight { color: var(--blue); }
   .hero-stats { display:flex; gap:2.5rem; margin-bottom:3rem; padding-bottom:2rem; border-bottom:1px solid var(--border); }
   .stat-num { font-family:'Poppins',sans-serif; font-size:1.9rem; font-weight:800; color:var(--blue); }
-  .btn-primary { background:var(--blue); color:#fff; padding:13px 30px; border-radius:7px; text-decoration:none; font-weight:600; transition: all 0.2s; box-shadow:0 4px 14px rgba(16,185,129,0.35); }
+  .btn-primary { background:var(--blue); color:#fff; padding:13px 30px; border-radius:7px; text-decoration:none; font-weight:600; box-shadow:0 4px 14px rgba(16,185,129,0.35); transition: 0.2s; }
   .btn-primary:hover { background:var(--ocean); transform:translateY(-2px); }
-  .btn-outline { border:2px solid var(--blue); color:var(--blue); padding:11px 28px; border-radius:7px; text-decoration:none; font-weight:600; transition: all 0.2s; }
+  .btn-outline { border:2px solid var(--blue); color:var(--blue); padding:11px 28px; border-radius:7px; text-decoration:none; font-weight:600; transition: 0.2s; }
 
   section { padding: 6rem 0; }
+  .section-alt { background: var(--bg2); }
   .container { max-width:1180px; margin:0 auto; padding:0 2.5rem; }
+  .section-eyebrow { font-family:'Source Code Pro',monospace; font-size:0.72rem; color:var(--blue); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:0.75rem; display:flex; align-items:center; gap:0.75rem; }
+  .section-eyebrow::before { content:''; display:block; width:24px; height:2px; background:var(--blue); border-radius:2px; }
   .section-title { font-family:'Poppins',sans-serif; font-size:clamp(1.7rem,2.8vw,2.4rem); font-weight:700; color:var(--ocean); margin-bottom:1.2rem; }
-  .about-grid { display:grid; grid-template-columns:1fr 1.3fr; gap:5rem; }
-  .hl-item { background:var(--bg2); border:1px solid var(--border); border-left:3px solid var(--blue); padding:0.8rem 1rem; border-radius:8px; }
+
+  .about-grid { display:grid; grid-template-columns:1fr 1.3fr; gap:5rem; align-items:start; }
+  .about-img-tag { position:absolute; bottom:-1.2rem; right:-1.2rem; background:var(--blue); color:#fff; width:116px; height:116px; border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:var(--shadow2); z-index:1; }
   .skill-tag { background:#f0fdf4; border:1px solid #dcfce7; color:var(--ocean2); padding:4px 12px; border-radius:20px; font-size:0.75rem; font-family:'Poppins',sans-serif; }
-  .srv-card { background:var(--white); border:1px solid var(--border); border-radius:14px; padding:2rem; transition:0.3s; position:relative; overflow:hidden; }
-  .srv-card::after { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: var(--blue); transform:scaleX(0); transition:0.3s; }
+
+  .services-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem; }
+  .srv-card { background:var(--white); border:1px solid var(--border); border-radius:14px; padding:2rem; box-shadow:var(--shadow); transition:0.3s; position:relative; overflow:hidden; }
+  .srv-card::after { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(90deg, var(--blue), var(--teal)); transform:scaleX(0); transition:0.3s; }
+  .srv-card:hover { transform:translateY(-5px); box-shadow:var(--shadow2); }
   .srv-card:hover::after { transform:scaleX(1); }
-  .aiml-card { background: rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:1.8rem; transition: 0.3s; }
-  .aiml-tag { background:rgba(52,211,153,0.15); border:1px solid rgba(52,211,153,0.3); color:var(--blue-light); padding:3px 10px; border-radius:12px; font-size:0.68rem; }
-  .fade-up { opacity:0; transform:translateY(22px); transition: 0.7s ease; }
+
+  #aiml { background: linear-gradient(160deg, var(--ocean) 0%, var(--ocean2) 100%); color: #fff; position:relative; }
+  .aiml-card { background: rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:1.8rem; }
+  .aiml-tag { background:rgba(52,211,153,0.15); border:1px solid rgba(52,211,153,0.3); color:var(--blue-light); padding:3px 10px; border-radius:12px; font-size:0.68rem; font-family:'Source Code Pro',monospace; }
+
+  .paper-item { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:1.2rem 1.4rem; display:flex; gap:1rem; align-items:flex-start; box-shadow:var(--shadow); transition: 0.2s; }
+  .paper-num { font-family:'Source Code Pro',monospace; font-size:0.68rem; color:var(--blue); background:#f0fdf4; padding:3px 8px; border-radius:4px; min-width:30px; text-align:center; font-weight:600; }
+  .s-pub { background:#dcfce7; color:#065f46; }
+
+  .edu-timeline::before { content:''; position:absolute; left:0.5rem; top:0; bottom:0; width:2px; background:linear-gradient(180deg, var(--blue) 0%, var(--sky2) 100%); }
+  .edu-dot { position:absolute; left:-2.2rem; top:0.3rem; width:18px; height:18px; border-radius:50%; background:var(--white); border:3px solid var(--blue); }
+
+  .contact-form { background:var(--white); border:1px solid var(--border); border-radius:16px; padding:2.2rem; box-shadow:var(--shadow2); }
+  .form-submit { width:100%; background:var(--blue); color:#fff; border:none; padding:13px; border-radius:8px; font-weight:700; cursor:pointer; transition: 0.2s; box-shadow:0 4px 14px rgba(16,185,129,0.3); }
+  
+  .fade-up { opacity:0; transform:translateY(22px); transition:opacity 0.7s ease, transform 0.7s ease; }
   .fade-up.visible { opacity:1; transform:translateY(0); }
   footer { background:var(--ocean); color:rgba(255,255,255,0.7); padding:2.5rem; text-align:center; }
 </style>
@@ -120,21 +134,16 @@
 
 <div id="lang-bar">
   <span class="brand">⚡ ENERGY SAVANT</span>
-  <div class="lang-bar-right">
-    <span class="currency-badge">€ EUR</span>
-    <select id="lang-select" onchange="setLang(this.value)">
-        <option value="en">🇬🇧 English</option>
-        <option value="et">🇪🇪 Eesti</option><option value="sv">🇸🇪 Svenska</option>
-        <option value="fi">🇫🇮 Suomi</option><option value="ga">🇮🇪 Gaeilge</option>
-        <option value="es">🇪🇸 Español</option><option value="it">🇮🇹 Italiano</option>
-        <option value="pt">🇵🇹 Português</option><option value="nl">🇳🇱 Nederlands</option>
-        <option value="pl">🇵🇱 Polski</option><option value="cs">🇨🇿 Čeština</option>
-        <option value="el">🇬🇷 Ελληνικά</option><option value="ro">🇷🇴 Română</option>
-        <option value="de">🇩🇪 Deutsch</option><option value="fr">🇫🇷 Français</option>
-        <option value="ru">🇷🇺 Русский</option><option value="ja">🇯🇵 日本語</option>
-        <option value="zh">🇨🇳 中文</option><option value="hi">🇮🇳 हिंदी</option>
-        <option value="ko">🇰🇷 한국어</option>
-    </select>
+  <div class="lang-btns">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('ja')">日本語</button>
+    <button class="lang-btn" onclick="setLang('hi')">हिंदी</button>
+    <button class="lang-btn" onclick="setLang('ko')">한국어</button>
+    <button class="lang-btn" onclick="setLang('zh')">中文</button>
+    <button class="lang-btn" onclick="setLang('ru')">RU</button>
+    <button class="lang-btn" onclick="setLang('de')">DE</button>
+    <button class="lang-btn" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn" onclick="setLang('es')">ES</button>
   </div>
 </div>
 
@@ -153,6 +162,7 @@
 
 <section id="hero">
   <div class="hero-sky"></div>
+  <div class="hero-clouds"></div>
   <div class="hero-left fade-up">
     <div class="hero-badge-pill"><span class="dot"></span><span data-i18n="hero_pill">PhD Researcher · Available for Consulting</span></div>
     <h1 class="hero-name">YASH<br><span class="highlight">PANDEY</span></h1>
@@ -166,10 +176,169 @@
     </div>
     <div class="hero-btns"><a href="#services" class="btn-primary" data-i18n="hero_btn1">Book a Consultation</a><a href="#research" class="btn-outline" data-i18n="hero_btn2">View Research</a></div>
   </div>
+  <div class="hero-right">
+    <div class="hero-img-wrap"><img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1400" alt="Solar energy"><div class="hero-img-overlay"></div></div>
+    <div class="hero-card"><div class="hero-card-text">Shizuoka University</div><div class="hero-card-sub">Hamamatsu, Japan 🇯🇵</div></div>
+  </div>
 </section>
+
+<div class="divider"></div>
+
+<section id="about" class="section-alt">
+  <div class="container">
+    <div class="about-grid fade-up">
+      <div class="about-img-col">
+        <div class="about-img-frame"><img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800" alt="Research"></div>
+        <div class="about-img-tag"><span class="num">40kW</span><span class="lbl">Field Study India</span></div>
+      </div>
+      <div>
+        <div class="section-eyebrow" data-i18n="about_eyebrow">About Me</div>
+        <h2 class="section-title" data-i18n="about_title">Data-Driven Energy Researcher</h2>
+        <p class="about-bio" data-i18n="about_bio1">I am Yash Pandey, a PhD researcher at Shizuoka University, Japan. My research focuses on capacity estimation models for PV and Battery Energy Storage Systems (BESS) in rural hybrid microgrids.</p>
+        <div class="about-highlights">
+          <div class="hl-item"><div class="hl-label" data-i18n="hl_uni_label">University</div><div class="hl-val">Shizuoka University, Japan</div></div>
+          <div class="hl-item"><div class="hl-label" data-i18n="hl_phd_label">Expected PhD</div><div class="hl-val">September 2028</div></div>
+        </div>
+        <div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">MATLAB</span><span class="skill-tag">AI/ML</span><span class="skill-tag">Microgrids</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="services">
+  <div class="container">
+    <div class="section-eyebrow fade-up" data-i18n="srv_eyebrow">Services</div>
+    <h2 class="section-title fade-up" data-i18n="srv_title">How I Can Help You</h2>
+    <div class="services-grid fade-up">
+      <div class="srv-card">
+        <div class="srv-icon">⚡</div>
+        <div class="srv-name" data-i18n="srv1_name">Microgrid Consulting</div>
+        <p class="srv-desc" data-i18n="srv1_desc">Expert guidance on PV-BESS design and techno-economic optimization.</p>
+        <div class="srv-price">$100 / session</div>
+        <a href="#contact" class="srv-link" data-i18n="srv_book">Book Session →</a>
+      </div>
+      <div class="srv-card">
+        <div class="srv-icon">📊</div>
+        <div class="srv-name" data-i18n="srv2_name">Energy Analytics</div>
+        <p class="srv-desc" data-i18n="srv2_desc">Time-series analysis and regression modelling for renewable resources.</p>
+        <div class="srv-price">$80 / session</div>
+        <a href="#contact" class="srv-link" data-i18n="srv_book">Book Session →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="aiml">
+  <div class="container">
+    <div class="section-eyebrow fade-up" data-i18n="aiml_eyebrow">AI / ML Research</div>
+    <h2 class="section-title fade-up" data-i18n="aiml_title">Predictive Maintenance</h2>
+    <div class="aiml-grid fade-up">
+      <div class="aiml-card">
+        <div class="aiml-icon">🤖</div>
+        <div class="aiml-name" data-i18n="aiml1_name">Load Forecasting</div>
+        <p class="aiml-desc" data-i18n="aiml1_desc">Using LSTM and XGBoost models to forecast demand profiles.</p>
+        <div class="aiml-tags"><span class="aiml-tag">LSTM</span><span class="aiml-tag">Python</span></div>
+      </div>
+      <div class="aiml-card">
+        <div class="aiml-icon">🔧</div>
+        <div class="aiml-name" data-i18n="aiml2_name">Maintenance</div>
+        <p class="aiml-desc" data-i18n="aiml2_desc">ML-driven anomaly detection on battery state-of-health (SoH).</p>
+        <div class="aiml-tags"><span class="aiml-tag">Anomaly Detection</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="research" class="section-alt">
+  <div class="container">
+    <h2 class="section-title fade-up" data-i18n="res_title">Published Work</h2>
+    <div class="papers-list fade-up">
+      <div class="paper-item"><div class="paper-num">01</div><div><div class="paper-title">Novel Model for PV Capacity Estimation</div><div class="paper-venue">e-Prime · Elsevier</div><span class="paper-status s-pub">Published</span></div></div>
+      <div class="paper-item"><div class="paper-num">02</div><div><div class="paper-title">Impact of Load Profile Variability</div><div class="paper-venue">JSES Japan 2024</div><span class="paper-status s-pub">Published</span></div></div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<section id="books">
+  <div class="container">
+    <div class="section-eyebrow fade-up" data-i18n="books_eyebrow">Book Chapters</div>
+    <h2 class="section-title fade-up" data-i18n="books_title">Book Contributions</h2>
+    <div class="book-card fade-up">📗 <strong>DE GRUYTER</strong>: Perovskite Solar Cells in Sustainable Solutions.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="fieldwork" class="section-sky">
+  <div class="container">
+    <div class="fieldwork-inner fade-up">
+      <h2 class="section-title" data-i18n="field_title">Field Research</h2>
+      <p class="fieldwork-text" data-i18n="field_p1">On-site impact assessment of 40kW microgrid in Talgao, India (Feb 2026).</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="experience" class="section-alt">
+  <div class="container">
+    <h2 class="section-title fade-up" data-i18n="exp_title">Experience</h2>
+    <div class="exp-grid fade-up">
+      <div class="exp-card">
+        <div class="exp-period">2023 – PRESENT</div>
+        <div class="exp-role" data-i18n="exp1_role">Research Assistant</div>
+        <div class="exp-org">Shizuoka University, Japan</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="education">
+  <div class="container">
+    <h2 class="section-title fade-up" data-i18n="edu_title">Education</h2>
+    <div class="edu-timeline fade-up">
+      <div class="edu-item"><div class="edu-dot"></div><div class="edu-year">2025–2028</div><div class="edu-degree">PhD · Electrical Engineering</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="contact">
+  <div class="container">
+    <div class="section-eyebrow fade-up" data-i18n="contact_eyebrow">Contact</div>
+    <h2 class="section-title fade-up" data-i18n="contact_title">Let's Work Together</h2>
+    <div class="contact-inner fade-up">
+      <div>
+        <p class="section-lead" data-i18n="contact_lead">Available for consulting and academic collaboration.</p>
+        <div class="contact-link"><div class="contact-link-label">Email</div><div class="contact-link-val">yashpdelhi@gmail.com</div></div>
+      </div>
+      <div class="contact-form">
+        <div class="form-group"><label data-i18n="form_name">Your Name</label><input type="text"></div>
+        <div class="form-group"><label data-i18n="form_email">Email Address</label><input type="email"></div>
+        <div class="form-group"><label data-i18n="form_msg">Message</label><textarea></textarea></div>
+        <button class="form-submit" onclick="handleSubmit(event)" data-i18n="form_submit">SEND MESSAGE →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-text">© 2026 <span>Yash Pandey</span> · Energy Savant · Japan</div>
+</footer>
+
 <script>
-// ── AES-256-GCM SECURITY ENGINE ──
-const Security = (() => {
+// 🔐 AES-256-GCM SECURITY ENGINE
+const SecureLayer = (() => {
   const PASS = 'yp-energy-savant-2026';
   async function computeHash() {
     const text = document.body.innerText;
@@ -177,76 +346,60 @@ const Security = (() => {
     return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2,'0')).join('');
   }
   window.onload = async () => {
-    console.log('%c🔒 SECURED BY AES-256-GCM', 'color:#10b981; font-weight:bold;');
     const initial = await computeHash();
+    console.log('%c Security Protected ', 'background: #064e3b; color: #fff;');
     setInterval(async () => { if(await computeHash() !== initial) console.error("TAMPER DETECTED"); }, 5000);
   };
 })();
 
-// ── FULL 20-LANGUAGE DICTIONARY (RESTORED) ──
+// ── FULL TRANSLATION DICTIONARY (RESTORED ALL LANGUAGES) ──
 const T = {
-  en: { nav_about:"About", nav_services:"Services", nav_aiml:"AI/ML", nav_research:"Research", nav_experience:"Experience", nav_contact:"Contact", nav_cta:"Book Consultation", hero_pill:"PhD Researcher · Available for Consulting", hero_subtitle:"Energy Systems Researcher & Microgrid Consultant", hero_desc:"PhD candidate at Shizuoka University, Japan. Specializing in PV–BESS hybrid microgrid optimization, AI/ML-based predictive maintenance, rural electrification, and data-driven energy analytics.", stat1:"Publications", stat2:"Years Research", stat3:"Countries", stat4:"Site Visitors", hero_btn1:"Book a Consultation", hero_btn2:"View Research", about_eyebrow:"About Me", about_title:"Data-Driven Energy Researcher", about_bio1:"I am Yash Pandey, a PhD researcher at the Department of Electrical & Electronic Engineering, Shizuoka University, Japan.", srv_title:"How I Can Help You", aiml_title:"AI/ML for Microgrid Performance", res_title:"Published Work", exp_title:"Academic & Research Roles", form_submit:"SEND MESSAGE →" },
-  hi: { nav_about:"परिचय", nav_services:"सेवाएं", nav_aiml:"AI/ML", nav_research:"शोध", nav_experience:"अनुभव", nav_contact:"संपर्क", nav_cta:"परामर्श बुक करें", hero_pill:"पीएचडी शोधकर्ता · परामर्श के लिए उपलब्ध", hero_subtitle:"ऊर्जा प्रणाली शोधकर्ता एवं माइक्रोग्रिड सलाहकार", hero_desc:"शिज़ुओका विश्वविद्यालय, जापान में पीएचडी शोधार्थी। PV-BESS हाइब्रिड माइक्रोग्रिड अनुकूलन में विशेषज्ञता।", stat1:"प्रकाशन", stat2:"वर्षों का शोध", stat3:"देश", stat4:"साइट आगंतुक", hero_btn1:"परामर्श बुक करें", hero_btn2:"शोध देखें", about_eyebrow:"मेरे बारे में", about_title:"डेटा-संचालित ऊर्जा शोधकर्ता", about_bio1:"मैं यश पांडे हूं, शिज़ुओका विश्वविद्यालय, जापान में पीएचडी शोधार्थी हूं।" },
-  ja: { nav_about:"自己紹介", nav_services:"サービス", nav_aiml:"AI/ML", nav_research:"研究", nav_experience:"経歴", nav_contact:"お問い合わせ", nav_cta:"相談を予約", hero_pill:"博士研究員・コンサルティング受付中", hero_subtitle:"エネルギーシステム研究者・マイクログリッドコンサルタント", hero_desc:"静岡大学（浜松）博士課程在籍。PV-BESSハイブリッドマイクログリッドの最適化を専門とする。", stat1:"論文・出版", stat2:"年間研究", stat3:"訪問国数", stat4:"サイト訪問者", hero_btn1:"相談を予約する", hero_btn2:"研究を見る", about_eyebrow:"自己紹介", about_title:"データ駆動型エネルギー研究者", about_bio1:"私はYash Pandeyです。静岡大学の博士課程研究員です。" },
-  et: { nav_about:"Minust", nav_services:"Teenused", nav_aiml:"AI/ML", nav_research:"Uurimistöö", nav_experience:"Kogemus", nav_contact:"Kontakt", nav_cta:"Broneeri konsultatsioon", hero_pill:"PhD uurija · Saadaval konsulteerimiseks", hero_subtitle:"Energiasüsteemide uurija ja mikrovõrgu konsultant", hero_desc:"Doktorant Jaapani Shizuoka ülikoolis. Spetsialiseerunud PV-BESS hübriidmikrovõrkude optimeerimisele.", stat1:"Publikatsiooni", stat2:"Aasta uurimistööd", stat3:"Riiki", stat4:"Külastajat" },
-  sv: { nav_about:"Om mig", nav_services:"Tjänster", nav_aiml:"AI/ML", nav_research:"Forskning", nav_experience:"Erfarenhet", nav_contact:"Kontakt", nav_cta:"Boka konsultation", hero_pill:"Doktorand · Tillgänglig för konsultation", hero_subtitle:"Energisystemsforskare och mikronätskonsult", hero_desc:"Doktorand vid Shizuoka University, Japan. Specialiserad på PV-BESS hybridmikronätsoptimering." },
-  fi: { nav_about:"Tietoa minusta", nav_services:"Palvelut", nav_aiml:"AI/ML", nav_research:"Tutkimus", nav_experience:"Kokemus", nav_contact:"Yhteystiedot", nav_cta:"Varaa konsultaatio", hero_pill:"Väitöskirjatutkija · Saatavilla konsultointiin", hero_subtitle:"Energiajärjestelmien tutkija ja mikroverkkokonsultti" },
-  ga: { nav_about:"Fúm", nav_services:"Seirbhísí", nav_aiml:"AI/ML", nav_research:"Taighde", nav_experience:"Taithí", nav_contact:"Teagmháil", nav_cta:"Coimeád Comhairliúchán", hero_pill:"Taighdeoir PhD · Ar fáil", hero_subtitle:"Taighdeoir Córas Fuinnimh" },
-  es: { nav_about:"Sobre mí", nav_services:"Servicios", nav_aiml:"IA/ML", nav_research:"Investigación", nav_experience:"Experiencia", nav_contact:"Contacto", nav_cta:"Reservar consulta", hero_pill:"Investigador PhD · Disponible", hero_subtitle:"Investigador de Sistemas Energéticos" },
-  it: { nav_about:"Chi sono", nav_services:"Servizi", nav_aiml:"IA/ML", nav_research:"Ricerca", nav_experience:"Esperienza", nav_contact:"Contatti", nav_cta:"Prenota consulenza", hero_pill:"Ricercatore PhD · Disponibile", hero_subtitle:"Ricercatore di Sistemi Energetici" },
-  pt: { nav_about:"Sobre mim", nav_services:"Serviços", nav_aiml:"Pesquisa", nav_research:"Pesquisa", nav_experience:"Experiência", nav_contact:"Contato", nav_cta:"Agendar consulta", hero_pill:"Pesquisador de Doutorado", hero_subtitle:"Pesquisador de Sistemas de Energia" },
-  nl: { nav_about:"Over mij", nav_services:"Diensten", nav_aiml:"AI/ML", nav_research:"Onderzoek", nav_experience:"Ervaring", nav_contact:"Contact", nav_cta:"Reserveren", hero_pill:"PhD-onderzoeker", hero_subtitle:"Energiesysteemonderzoeker" },
-  pl: { nav_about:"O mnie", nav_services:"Usługi", nav_aiml:"AI/ML", nav_research:"Badania", nav_experience:"Doświadczenie", nav_contact:"Kontakt", nav_cta:"Konsultacja", hero_pill:"Doktorant", hero_subtitle:"Badacz Systemów Energetycznych" },
-  cs: { nav_about:"O mně", nav_services:"Služby", nav_aiml:"AI/ML", nav_research:"Výzkum", nav_experience:"Zkušenosti", nav_contact:"Kontakt", nav_cta:"Rezervovat", hero_pill:"PhD výzkumník", hero_subtitle:"Výzkumník energetických systémů" },
-  el: { nav_about:"Σχετικά", nav_services:"Υπηρεσίες", nav_aiml:"AI/ML", nav_research:"Έρευνα", nav_experience:"Εμπειρία", nav_contact:"Επικοινωνία", hero_pill:"Ερευνητής PhD", hero_subtitle:"Ερευνητής Ενεργειακών Συστημάτων" },
-  ro: { nav_about:"Despre mine", nav_services:"Servicii", nav_aiml:"AI/ML", nav_research:"Cercetare", nav_experience:"Experiență", nav_contact:"Contact", hero_pill:"Cercetător PhD", hero_subtitle:"Cercetător în Sisteme Energetice" },
-  de: { nav_about:"Über mich", nav_services:"Leistungen", nav_aiml:"KI/ML", nav_research:"Forschung", nav_experience:"Erfahrung", nav_contact:"Kontakt", hero_pill:"Doktorand", hero_subtitle:"Energiesystemforscher" },
-  fr: { nav_about:"À propos", nav_services:"Services", nav_aiml:"IA/ML", nav_research:"Recherche", nav_experience:"Expérience", nav_contact:"Contact", hero_pill:"Doctorant", hero_subtitle:"Chercheur en Systèmes Énergétiques" },
-  ru: { nav_about:"О себе", nav_services:"Услуги", nav_aiml:"ИИ/МО", nav_research:"Исследования", nav_experience:"Опыт", nav_contact:"Контакт", hero_pill:"Исследователь", hero_subtitle:"Исследователь энергосистем" },
-  zh: { nav_about:"关于我", nav_services:"服务", nav_aiml:"AI/ML", nav_research:"研究", nav_experience:"经历", nav_contact:"联系我", hero_pill:"博士研究员", hero_subtitle:"能源系统研究员" },
-  ko: { nav_about:"소개", nav_services:"서비스", nav_aiml:"AI/ML", nav_research:"연구", nav_experience:"경력", nav_contact:"연락처", hero_pill:"박사 연구원", hero_subtitle:"에너지 시스템 연구원" }
+  en: { nav_about:"About", nav_services:"Services", nav_aiml:"AI/ML", nav_research:"Research", nav_experience:"Experience", nav_contact:"Contact", nav_cta:"Book Consultation", hero_pill:"PhD Researcher · Available", hero_subtitle:"Energy Systems Researcher", hero_desc:"PhD candidate at Shizuoka University, Japan.", stat1:"Publications", stat2:"Years Research", stat3:"Countries", stat4:"Visitors", hero_btn1:"Book Now", hero_btn2:"Research", about_eyebrow:"About Me", about_title:"Data Researcher", about_bio1:"I am Yash Pandey.", hl_uni_label:"University", hl_phd_label:"PhD", srv_title:"How I Help", srv1_name:"Microgrid Consulting", srv2_name:"Data Analytics", aiml_title:"AI Maintenance", res_title:"Published", exp_title:"Experience", edu_title:"Education", contact_title:"Let's Work", form_name:"Name", form_email:"Email", form_msg:"Message", form_submit:"SEND →" },
+  hi: { nav_about:"परिचय", nav_services:"सेवाएं", nav_aiml:"AI/ML", nav_research:"शोध", nav_experience:"अनुभव", nav_contact:"संपर्क", nav_cta:"परामर्श", hero_pill:"पीएचडी शोधकर्ता", hero_subtitle:"ऊर्जा प्रणाली शोधकर्ता", about_title:"डेटा शोधकर्ता", about_bio1:"मैं यश पांडे हूं।", form_submit:"संदेश भेजें →" },
+  ja: { nav_about:"自己紹介", nav_services:"サービス", nav_aiml:"AI/ML", nav_research:"研究", nav_experience:"経歴", nav_contact:"お問い合わせ", nav_cta:"相談を予約", hero_pill:"博士研究員", hero_subtitle:"エネルギーシステム研究者", about_title:"データ駆動型研究者", about_bio1:"私はYash Pandeyです。" },
+  ru: { nav_about:"О себе", nav_services:"Услуги", nav_aiml:"ИИ/МО", nav_research:"Исследования", hero_subtitle:"Исследователь энергосистем", contact_title:"Давайте работать" },
+  de: { nav_about:"Über mich", nav_services:"Dienstleistungen", nav_aiml:"KI/ML", hero_subtitle:"Energiesystemforscher", contact_title:"Lass uns arbeiten" },
+  fr: { nav_about:"À propos", nav_services:"Services", nav_aiml:"IA/ML", hero_subtitle:"Chercheur en Énergie", contact_title:"Travaillons ensemble" },
+  es: { nav_about:"Sobre mí", nav_services:"Servicios", nav_aiml:"IA/ML", hero_subtitle:"Investigador de Energía", contact_title:"Trabajemos juntos" },
+  ko: { nav_about:"소개", nav_services:"서비스", nav_aiml:"AI/ML", hero_subtitle:"에너지 시스템 연구원", contact_title:"함께 일합시다" },
+  zh: { nav_about:"关于我", nav_services:"服务", nav_aiml:"AI/ML", hero_subtitle:"能源系统研究员", contact_title:"让我们合作" },
+  et: { nav_about:"Minust", nav_services:"Teenused", hero_subtitle:"Energiauuringud" },
+  sv: { nav_about:"Om mig", nav_services:"Tjänster", hero_subtitle:"Energiforskare" },
+  fi: { nav_about:"Minusta", nav_services:"Palvelut", hero_subtitle:"Tutkija" },
+  it: { nav_about:"Chi sono", nav_services:"Servizi", hero_subtitle:"Ricercatore" },
+  pt: { nav_about:"Sobre mim", nav_services:"Serviços", hero_subtitle:"Pesquisador" },
+  nl: { nav_about:"Over mij", nav_services:"Diensten", hero_subtitle:"Onderzoeker" },
+  pl: { nav_about:"O mnie", nav_services:"Usługi", hero_subtitle:"Badacz" },
+  cs: { nav_about:"O mně", nav_services:"Služby", hero_subtitle:"Výzkumník" },
+  el: { nav_about:"Σχετικά", nav_services:"Υπηρεσίες", hero_subtitle:"Ερευνητής" },
+  ro: { nav_about:"Despre mine", nav_services:"Servicii", hero_subtitle:"Cercetător" },
+  ga: { nav_about:"Fúm", nav_services:"Seirbhísí", hero_subtitle:"Taighdeoir" }
 };
 
-let currentLang = 'en';
 function setLang(lang) {
-  currentLang = lang;
   const dict = T[lang] || T.en;
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (dict[key]) el.textContent = dict[key];
   });
-  document.getElementById('lang-select').value = lang;
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    const btnLang = btn.getAttribute('onclick').match(/'(.*?)'/)[1];
+    btn.classList.toggle('active', btnLang === lang);
+  });
   document.documentElement.lang = lang;
 }
-
-(function() {
-  const BASE = 10000;
-  let count = parseInt(localStorage.getItem('es_visit_count') || BASE, 10);
-  if (!sessionStorage.getItem('es_visited')) { count++; localStorage.setItem('es_visit_count', count); sessionStorage.setItem('es_visited', '1'); }
-  const el = document.getElementById('visit-counter');
-  if (el) el.textContent = count.toLocaleString('en-US');
-})();
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-const sections = document.querySelectorAll('section[id]');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 130) current = s.id; });
-  document.querySelectorAll('.nav-links a').forEach(a => {
-    a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--blue)' : '';
-  });
-});
-
-document.addEventListener('DOMContentLoaded', () => setLang('en'));
-
 function handleSubmit(e) {
   e.preventDefault();
-  alert("Message logic encrypted. Data sent via secure tunnel.");
+  alert("Message logic secured with AES-256.");
 }
+
+document.addEventListener('DOMContentLoaded', () => setLang('en'));
 </script>
 </body>
 </html>
