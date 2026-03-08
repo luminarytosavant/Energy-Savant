@@ -264,7 +264,7 @@
   }
 
   /* ── SERVICES ── */
-  .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+  .services-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem; }
   .srv-card {
     background:var(--white); border:1px solid var(--border);
     border-radius:14px; padding:2rem; box-shadow:var(--shadow);
@@ -631,6 +631,14 @@
         <div class="srv-dur">⏱ 30 minutes · First session free</div>
         <a href="#contact" class="srv-link" data-i18n="srv_book">Book Session →</a>
       </div>
+      <div class="srv-card">
+        <div class="srv-icon">🗺️</div>
+        <div class="srv-name">Energy Data Science, Analytics Advisory & Policy Advocation</div>
+        <div class="srv-desc">Strategic advisory bridging data-driven energy insights with policy frameworks. Includes evidence-based recommendations for renewable energy policy, rural electrification planning, regulatory guidance, and translating complex energy datasets into actionable policy briefs for governments, NGOs, and international bodies.</div>
+        <div class="srv-price">$120 / session</div>
+        <div class="srv-dur">⏱ 75 minutes · Online via Zoom</div>
+        <a href="#contact" class="srv-link">Book Session →</a>
+      </div>
     </div>
   </div>
 </section>
@@ -831,8 +839,8 @@
       <div>
         <p class="section-lead" style="margin-bottom:0" data-i18n="contact_lead">Available for consulting, research collaboration, academic partnerships, and mentoring. Based in Japan — open to remote work globally and relocation to Europe or Southeast Asia.</p>
         <div class="contact-links">
-          <a href="mailto:yashpdelhi@gmail.com" class="contact-link"><span class="contact-link-icon">✉️</span><div><div class="contact-link-label" data-i18n="cl_personal">Personal Email</div><div class="contact-link-val">yashpdelhi@gmail.com</div></div></a>
-          <a href="mailto:pandey.yash.23@shizuoka.ac.jp" class="contact-link"><span class="contact-link-icon">🎓</span><div><div class="contact-link-label" data-i18n="cl_academic">Institutional Email</div><div class="contact-link-val">pandey.yash.23@shizuoka.ac.jp</div></div></a>
+          <a href="/cdn-cgi/l/email-protection#99e0f8eaf1e9fdfcf5f1f0d9fef4f8f0f5b7faf6f4" class="contact-link"><span class="contact-link-icon">✉️</span><div><div class="contact-link-label" data-i18n="cl_personal">Personal Email</div><div class="contact-link-val"><span class="__cf_email__" data-cfemail="e1988092899185848d8988a1868c80888dcf828e8c">[email&#160;protected]</span></div></div></a>
+          <a href="/cdn-cgi/l/email-protection#f686979892938fd88f97859ed8c4c5b6859e9f8c83999d97d89795d89c86" class="contact-link"><span class="contact-link-icon">🎓</span><div><div class="contact-link-label" data-i18n="cl_academic">Institutional Email</div><div class="contact-link-val"><span class="__cf_email__" data-cfemail="e292838c86879bcc9b83918accd0d1a2918a8b98978d8983cc8381cc8892">[email&#160;protected]</span></div></div></a>
           <a href="tel:+81-7090976618" class="contact-link"><span class="contact-link-icon">📱</span><div><div class="contact-link-label" data-i18n="cl_jp">Phone (Japan)</div><div class="contact-link-val">+81-7090976618</div></div></a>
           <a href="tel:+91-9455918918" class="contact-link"><span class="contact-link-icon">📲</span><div><div class="contact-link-label" data-i18n="cl_in">Phone (India)</div><div class="contact-link-val">+91-9455918918</div></div></a>
           <a href="https://luminarytosavant.github.io/YASHPANDEY.github.io/" target="_blank" class="contact-link"><span class="contact-link-icon">🌐</span><div><div class="contact-link-label" data-i18n="cl_portfolio">Portfolio</div><div class="contact-link-val">luminarytosavant.github.io</div></div></a>
@@ -847,6 +855,7 @@
           <select>
             <option data-i18n="form_opt1">Microgrid Consulting</option>
             <option data-i18n="form_opt2">Energy Data Analytics</option>
+            <option>Energy Policy Advocation</option>
             <option data-i18n="form_opt3">AI/ML Integration for Microgrids</option>
             <option data-i18n="form_opt4">Research Collaboration</option>
             <option data-i18n="form_opt5">Academic Mentoring</option>
@@ -876,7 +885,7 @@
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── TRANSLATIONS ──
 const T = {
   en: {
@@ -1383,19 +1392,4 @@ window.addEventListener('scroll', () => {
   let current = '';
   sections.forEach(s => { if (window.scrollY >= s.offsetTop - 130) current = s.id; });
   document.querySelectorAll('.nav-links a').forEach(a => {
-    a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--blue)' : '';
-  });
-});
-
-// ── CONTACT FORM ──
-function handleSubmit(e) {
-  e.preventDefault();
-  const btn = e.target;
-  const orig = btn.textContent;
-  btn.textContent = '✓ Message Sent!';
-  btn.style.background = '#065f46';
-  setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 3500);
-}
-</script>
-</body>
-</html>
+    a.style.colo
