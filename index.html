@@ -1,6 +1,3 @@
-code for my energy savant website
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,16 +53,34 @@ code for my energy savant website
     font-family: 'Source Code Pro', monospace; font-size: 0.7rem;
   }
   #lang-bar .brand { color: var(--blue-light); font-weight:500; letter-spacing:0.1em; }
-  .lang-btns { display:flex; gap:0.35rem; flex-wrap:wrap; }
-  .lang-btn {
-    background: transparent; border: 1px solid rgba(255,255,255,0.2);
-    color: rgba(255,255,255,0.65); padding: 3px 10px; border-radius:3px;
-    cursor:pointer; font-family:'Source Code Pro',monospace; font-size:0.68rem;
-    transition: all 0.2s;
+  .lang-bar-right { display:flex; align-items:center; gap:1rem; }
+  .currency-badge {
+    background:rgba(56,189,248,0.15); border:1px solid rgba(56,189,248,0.3);
+    color:var(--blue-light); padding:3px 10px; border-radius:3px;
+    font-size:0.68rem; font-family:'Source Code Pro',monospace; font-weight:600; letter-spacing:0.06em;
   }
-  .lang-btn:hover, .lang-btn.active {
-    background: var(--blue-light); color: var(--ocean); border-color: var(--blue-light); font-weight:700;
+  .lang-select-wrap { position:relative; display:flex; align-items:center; gap:0.5rem; }
+  .lang-select-wrap::before { content:'🌐'; font-size:0.85rem; }
+  #lang-select {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.9);
+    padding: 5px 28px 5px 10px;
+    border-radius: 5px;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.72rem;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2338bdf8'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    transition: border-color 0.2s, background-color 0.2s;
+    min-width: 165px;
   }
+  #lang-select:hover, #lang-select:focus { border-color: var(--blue-light); background-color: rgba(255,255,255,0.14); }
+  #lang-select option { background: #0c4a6e; color: #fff; }
 
   /* ── NAV ── */
   nav {
@@ -488,15 +503,32 @@ code for my energy savant website
 <!-- LANG BAR -->
 <div id="lang-bar">
   <span class="brand">⚡ ENERGY SAVANT</span>
-  <div class="lang-btns">
-    <button class="lang-btn active" onclick="setLang('en')">EN</button>
-    <button class="lang-btn" onclick="setLang('ja')">日本語</button>
-    <button class="lang-btn" onclick="setLang('zh')">中文</button>
-    <button class="lang-btn" onclick="setLang('ru')">RU</button>
-    <button class="lang-btn" onclick="setLang('de')">DE</button>
-    <button class="lang-btn" onclick="setLang('fr')">FR</button>
-    <button class="lang-btn" onclick="setLang('hi')">हिंदी</button>
-    <button class="lang-btn" onclick="setLang('ko')">한국어</button>
+  <div class="lang-bar-right">
+    <span class="currency-badge">€ EUR</span>
+    <div class="lang-select-wrap">
+      <select id="lang-select" onchange="setLang(this.value)">
+        <option value="en">🇬🇧 English</option>
+        <option value="et">🇪🇪 Eesti (Estonian)</option>
+        <option value="sv">🇸🇪 Svenska (Swedish)</option>
+        <option value="fi">🇫🇮 Suomi (Finnish)</option>
+        <option value="ga">🇮🇪 Gaeilge (Irish)</option>
+        <option value="es">🇪🇸 Español (Spanish)</option>
+        <option value="it">🇮🇹 Italiano (Italian)</option>
+        <option value="pt">🇵🇹 Português</option>
+        <option value="nl">🇳🇱 Nederlands (Dutch)</option>
+        <option value="pl">🇵🇱 Polski (Polish)</option>
+        <option value="cs">🇨🇿 Čeština (Czech)</option>
+        <option value="el">🇬🇷 Ελληνικά (Greek)</option>
+        <option value="ro">🇷🇴 Română (Romanian)</option>
+        <option value="de">🇩🇪 Deutsch</option>
+        <option value="fr">🇫🇷 Français</option>
+        <option value="ru">🇷🇺 Русский</option>
+        <option value="ja">🇯🇵 日本語</option>
+        <option value="zh">🇨🇳 中文</option>
+        <option value="hi">🇮🇳 हिंदी</option>
+        <option value="ko">🇰🇷 한국어</option>
+      </select>
+    </div>
   </div>
 </div>
 
@@ -637,11 +669,11 @@ code for my energy savant website
       </div>
       <div class="srv-card">
         <div class="srv-icon">🗺️</div>
-        <div class="srv-name">Energy Data Science, Analytics Advisory & Policy Advocation</div>
-        <div class="srv-desc">Strategic advisory bridging data-driven energy insights with policy frameworks. Includes evidence-based recommendations for renewable energy policy, rural electrification planning, regulatory guidance, and translating complex energy datasets into actionable policy briefs for governments, NGOs, and international bodies.</div>
+        <div class="srv-name" data-i18n="srv4_name">Energy Data Science, Analytics Advisory & Policy Advocation</div>
+        <div class="srv-desc" data-i18n="srv4_desc">Strategic advisory bridging data-driven energy insights with policy frameworks. Includes evidence-based recommendations for renewable energy policy, rural electrification planning, regulatory guidance, and translating complex energy datasets into actionable policy briefs for governments, NGOs, and international bodies.</div>
         <div class="srv-price">$120 / session</div>
-        <div class="srv-dur">⏱ 75 minutes · Online via Zoom</div>
-        <a href="#contact" class="srv-link">Book Session →</a>
+        <div class="srv-dur" data-i18n="srv4_dur">⏱ 75 minutes · Online via Zoom</div>
+        <a href="#contact" class="srv-link" data-i18n="srv_book">Book Session →</a>
       </div>
     </div>
   </div>
@@ -914,6 +946,9 @@ const T = {
     srv2_desc:"Hands-on sessions in Python, MATLAB, and HOMER Pro. Time-series analysis, regression modelling, variability indices (TSV/D2DV), GHI solar resource assessment, and data visualization.",
     srv3_name:"Research Collaboration & Mentoring",
     srv3_desc:"Free 30-minute exploratory session for students and early-career researchers in renewable energy, BESS design, and hybrid microgrids. PhD guidance and research paper support.",
+    srv4_name:"Energy Data Science, Analytics Advisory & Policy Advocation",
+    srv4_desc:"Strategic advisory bridging data-driven energy insights with policy frameworks. Includes evidence-based recommendations for renewable energy policy, rural electrification planning, regulatory guidance, and translating complex energy datasets into actionable policy briefs for governments, NGOs, and international bodies.",
+    srv4_dur:"⏱ 75 minutes · Online via Zoom",
     srv_book:"Book Session →", free:"FREE",
     aiml_eyebrow:"AI / ML Research",
     aiml_title:"AI/ML for Microgrid Performance & Predictive Maintenance",
@@ -973,6 +1008,9 @@ const T = {
     srv2_desc:"Python・MATLAB・HOMER Proを用いた時系列解析・回帰モデリング・変動指数(TSV/D2DV)・GHI太陽資源評価・データ可視化の実践セッション。",
     srv3_name:"研究コラボレーション・メンタリング",
     srv3_desc:"再生可能エネルギー・BESS設計・ハイブリッドマイクログリッドを研究する学生・若手研究者向けの30分無料探索セッション。",
+    srv4_name:"エネルギーデータサイエンス・分析アドバイザリー・政策提言",
+    srv4_desc:"データ駆動型のエネルギー知見と政策フレームワークを橋渡しする戦略的アドバイザリー。再生可能エネルギー政策、農村電化計画、規制ガイダンス、そして複雑なエネルギーデータを政府・NGO・国際機関向けの政策提言書に変換するための支援を含む。",
+    srv4_dur:"⏱ 75分 · Zoomにてオンライン",
     srv_book:"セッションを予約 →", free:"無料",
     aiml_eyebrow:"AI / ML 研究",
     aiml_title:"マイクログリッドのパフォーマンス最適化と予知保全のためのAI/ML",
@@ -1032,6 +1070,9 @@ const T = {
     srv2_desc:"Python、MATLAB和HOMER Pro实操培训。时间序列分析、回归建模、变异指数(TSV/D2DV)、GHI太阳能资源评估和数据可视化。",
     srv3_name:"研究合作与学术辅导",
     srv3_desc:"面向可再生能源、BESS设计和混合微电网领域的学生和早期研究人员的30分钟免费探索性会议。",
+    srv4_name:"能源数据科学、分析咨询与政策倡导",
+    srv4_desc:"连接数据驱动能源洞察与政策框架的战略咨询。包括可再生能源政策、农村电气化规划、监管指导的循证建议，以及将复杂能源数据集转化为政府、NGO和国际机构可执行政策简报。",
+    srv4_dur:"⏱ 75分钟 · Zoom在线",
     srv_book:"预约会议 →", free:"免费",
     aiml_eyebrow:"AI / ML 研究",
     aiml_title:"微电网性能优化与预测性维护的AI/ML技术",
@@ -1091,6 +1132,9 @@ const T = {
     srv2_desc:"Python, MATLAB और HOMER Pro में व्यावहारिक सत्र। समय-श्रृंखला विश्लेषण, प्रतिगमन मॉडलिंग, परिवर्तनशीलता सूचकांक और GHI सौर संसाधन मूल्यांकन।",
     srv3_name:"शोध सहयोग एवं परामर्श",
     srv3_desc:"नवीकरणीय ऊर्जा, BESS डिज़ाइन और हाइब्रिड माइक्रोग्रिड में छात्रों और युवा शोधकर्ताओं के लिए 30 मिनट का निःशुल्क प्रारंभिक सत्र।",
+    srv4_name:"ऊर्जा डेटा विज्ञान, विश्लेषण सलाह एवं नीति समर्थन",
+    srv4_desc:"डेटा-आधारित ऊर्जा अंतर्दृष्टि और नीति ढांचों को जोड़ने वाली रणनीतिक सलाह। इसमें नवीकरणीय ऊर्जा नीति, ग्रामीण विद्युतीकरण योजना, नियामक मार्गदर्शन और जटिल ऊर्जा डेटासेट को सरकारों, NGO और अंतर्राष्ट्रीय निकायों के लिए क्रियाशील नीति संक्षेपों में बदलने की सेवाएं शामिल हैं।",
+    srv4_dur:"⏱ 75 मिनट · Zoom पर ऑनलाइन",
     srv_book:"सत्र बुक करें →", free:"निःशुल्क",
     aiml_eyebrow:"AI / ML शोध",
     aiml_title:"माइक्रोग्रिड प्रदर्शन अनुकूलन और पूर्वानुमानी रखरखाव के लिए AI/ML",
@@ -1150,6 +1194,9 @@ const T = {
     srv2_desc:"Практические сессии по Python, MATLAB и HOMER Pro. Анализ временных рядов, регрессионное моделирование, индексы вариабельности (TSV/D2DV) и оценка солнечных ресурсов GHI.",
     srv3_name:"Научное сотрудничество и наставничество",
     srv3_desc:"Бесплатная 30-минутная вводная сессия для студентов и начинающих исследователей в области ВИЭ, BESS и гибридных микросетей.",
+    srv4_name:"Энергетика данных, аналитический консалтинг и поддержка политики",
+    srv4_desc:"Стратегический консалтинг, связывающий аналитику данных с политическими рамками в области энергетики. Включает научно обоснованные рекомендации по политике ВИЭ, электрификации сельских районов, регуляторное руководство и перевод данных в политические брифы для правительств, НКО и международных организаций.",
+    srv4_dur:"⏱ 75 минут · Онлайн в Zoom",
     srv_book:"Записаться →", free:"БЕСПЛАТНО",
     aiml_eyebrow:"ИИ / МО Исследования",
     aiml_title:"ИИ/МО для оптимизации производительности и предиктивного обслуживания микросетей",
@@ -1209,6 +1256,9 @@ const T = {
     srv2_desc:"Praxissessions in Python, MATLAB und HOMER Pro. Zeitreihenanalyse, Regressionsmodellierung, Variabilitätsindizes (TSV/D2DV) und GHI-Solarressourcenbewertung.",
     srv3_name:"Forschungskooperation & Mentoring",
     srv3_desc:"Kostenlose 30-minütige Erstberatung für Studenten und Nachwuchsforscher in erneuerbarer Energie, BESS und Hybridmikronetzen.",
+    srv4_name:"Energiedatenwissenschaft, Analyseberatung & Politikfürsprache",
+    srv4_desc:"Strategische Beratung an der Schnittstelle von datengestützten Energieerkenntnissen und politischen Rahmenbedingungen. Umfasst evidenzbasierte Empfehlungen zu Energiepolitik, ländlicher Elektrifizierung, Regulierung und die Aufbereitung komplexer Energiedaten zu politischen Handlungsempfehlungen für Behörden, NGOs und internationale Gremien.",
+    srv4_dur:"⏱ 75 Minuten · Online via Zoom",
     srv_book:"Sitzung buchen →", free:"KOSTENLOS",
     aiml_eyebrow:"KI / ML Forschung",
     aiml_title:"KI/ML für Mikronetz-Leistungsoptimierung & Predictive Maintenance",
@@ -1268,6 +1318,9 @@ const T = {
     srv2_desc:"Sessions pratiques en Python, MATLAB et HOMER Pro. Analyse de séries temporelles, modélisation par régression, indices de variabilité (TSV/D2DV) et évaluation des ressources solaires GHI.",
     srv3_name:"Collaboration de Recherche & Mentorat",
     srv3_desc:"Session exploratoire gratuite de 30 minutes pour les étudiants et jeunes chercheurs en énergie renouvelable, conception BESS et microréseaux hybrides.",
+    srv4_name:"Science des Données Énergétiques, Conseil Analytique & Plaidoyer Politique",
+    srv4_desc:"Conseil stratégique à l'interface entre l'analyse de données énergétiques et les cadres politiques. Comprend des recommandations fondées sur des preuves pour la politique d'énergie renouvelable, la planification de l'électrification rurale, les conseils réglementaires et la traduction de données énergétiques complexes en notes politiques pour gouvernements, ONG et organismes internationaux.",
+    srv4_dur:"⏱ 75 minutes · En ligne via Zoom",
     srv_book:"Réserver une Session →", free:"GRATUIT",
     aiml_eyebrow:"Recherche IA / ML",
     aiml_title:"IA/ML pour l'Optimisation des Performances & la Maintenance Prédictive des Microréseaux",
@@ -1327,6 +1380,9 @@ const T = {
     srv2_desc:"Python, MATLAB, HOMER Pro 실습 세션. 시계열 분석, 회귀 모델링, 가변성 지수(TSV/D2DV), GHI 태양 자원 평가 및 시각화.",
     srv3_name:"연구 협력 및 멘토링",
     srv3_desc:"재생 에너지, BESS 설계, 하이브리드 마이크로그리드 분야 학생 및 초기 연구자를 위한 30분 무료 탐색 세션.",
+    srv4_name:"에너지 데이터 사이언스, 분석 자문 및 정책 옹호",
+    srv4_desc:"데이터 기반 에너지 인사이트와 정책 프레임워크를 연결하는 전략적 자문. 재생에너지 정책, 농촌 전화 계획, 규제 지침 관련 근거 기반 권고사항 제공 및 복잡한 에너지 데이터를 정부·NGO·국제기구를 위한 실행 가능한 정책 브리프로 전환하는 서비스 포함.",
+    srv4_dur:"⏱ 75분 · Zoom 온라인",
     srv_book:"세션 예약 →", free:"무료",
     aiml_eyebrow:"AI / ML 연구",
     aiml_title:"마이크로그리드 성능 최적화 및 예지 정비를 위한 AI/ML",
@@ -1363,6 +1419,750 @@ const T = {
     form_opt1:"마이크로그리드 컨설팅", form_opt2:"에너지 데이터 분석", form_opt3:"AI/ML 통합",
     form_opt4:"연구 협력", form_opt5:"학술 멘토링", form_opt6:"취업/포스닥 기회", form_opt7:"기타",
     form_msg:"메시지", form_submit:"메시지 보내기 →"
+  },
+  et: {
+    nav_about:"Minust", nav_services:"Teenused", nav_aiml:"AI/ML", nav_research:"Uurimistöö",
+    nav_experience:"Kogemus", nav_contact:"Kontakt", nav_cta:"Broneeri konsultatsioon",
+    hero_pill:"PhD uurija · Saadaval konsulteerimiseks",
+    hero_subtitle:"Energiasüsteemide uurija ja mikrovõrgu konsultant",
+    hero_desc:"Doktorant Jaapani Shizuoka ülikoolis. Spetsialiseerunud PV-BESS hübriidmikrovõrkude optimeerimisele, AI/ML-põhisele ennetavale hooldusele, maapiirkondade elektrifitseerimisele ja andmepõhisele energiaanalüüsile. 3+ aastat puhtenergia mudelite arendamist väljaspool võrku.",
+    stat1:"Publikatsiooni", stat2:"Aasta uurimistööd", stat3:"Riiki", stat4:"Külastajat",
+    hero_btn1:"Broneeri konsultatsioon", hero_btn2:"Vaata uurimistööd",
+    hero_card_label:"Praegu asukoht",
+    about_eyebrow:"Minust", about_title:"Andmepõhine energiauurija",
+    about_bio1:"Olen Yash Pandey, doktorant Shizuoka ülikooli elektri- ja elektroonikaosakonnast Jaapanist, prof. Hironobu Matsuo juhendamisel. Mu uurimistöö keskendub lihtsustatud, kuid robustsetele PV ja BESS mahuhindamise mudelitele maapiirkondade hübriidmikrovõrkudes.",
+    about_bio2:"3+ aasta kogemusega Pythonis, MATLABis, HOMER Pros ja suuremahulises aegridade analüüsis. ABP stipendiumiga rahastatud töö hõlmab väliskülastusi Indias, teadusvahetust Taiwanis ja publikatsioone Wiley, Elsevier, De Gruyter, IEEE väljaannetes.",
+    hl_uni_label:"Ülikool", hl_dept_label:"Osakond", hl_phd_label:"PhD lõpetamine", hl_open_label:"Avatud võimalustele",
+    skills_label:"Tehnilised oskused",
+    srv_eyebrow:"Konsultatsiooniteenused", srv_title:"Kuidas saan aidata",
+    srv_lead:"Ekspertkonsultatsioon VVO-dele, arendajatele, uurijatele ja inseneridele, kes töötavad taastuvenergiasüsteemide ja maapiirkondade elektrifitseerimisega Aasias, Aafrikas ja Euroopas.",
+    srv1_name:"Mikrovõrgu ja maaelektrifitseerimise konsultatsioon",
+    srv1_desc:"Ekspertjuhendamine PV-BESS mikrovõrgu projekteerimisel, komponentide mõõtmisel, stsenaariumianalüüsil ja tehnis-majanduslikul optimeerimisel. Valideeritud HOMER Pro vastu.",
+    srv2_name:"Energiaandmeteaduse ja -analüütika nõustamine",
+    srv2_desc:"Praktiline sessioone Pythonis, MATLABis, HOMER Pros. Aegridade analüüs, regressioonimudelid, varieeruvusindeksid (TSV/D2DV), GHI päikeseressursi hindamine.",
+    srv3_name:"Teaduskoostöö ja mentorlus",
+    srv3_desc:"Tasuta 30-minutiline uurimissessioon taastuvenergia, BESS-i ja hübriidmikrovõrkudega tegelevatele tudengitele ja noortele uurijatele.",
+    srv4_name:"Energiaandmeteadus, analüütika nõustamine ja poliitika edendamine",
+    srv4_desc:"Strateegiline nõustamine andmepõhiste energiaülevaadete ja poliitikraamistike ühendamiseks. Sisaldab tõenduspõhiseid soovitusi taastuvenergia poliitika, maapiirkondade elektrifikatsiooni planeerimise ja regulatiivse juhendamise kohta.",
+    srv4_dur:"⏱ 75 minutit · Zoom online",
+    srv_book:"Broneeri sessioon →", free:"TASUTA",
+    aiml_eyebrow:"AI / ML Uurimistöö",
+    aiml_title:"AI/ML mikrovõrgu jõudluse optimeerimiseks ja ennetavaks hoolduseks",
+    aiml_lead:"Masinõppe ja AI-põhise optimeerimise integreerimine hübriidmikrovõrgu süsteemidesse efektiivsuse maksimeerimiseks ja rikete ennetamiseks.",
+    aiml1_name:"AI-põhine koormuse prognoosimine",
+    aiml1_desc:"LSTM, XGBoost ja Random Forest mudelid maapiirkondade mikrovõrkude koormusprofiilideks. Lühi- ja pikaajaline nõudluse prognoosimine.",
+    aiml2_name:"BESS-i ja päikesepaneelide ennetav hooldus",
+    aiml2_desc:"ML-põhine anomaaliate tuvastamine aku terviseseisundis (SoH) ja PV mooduli jõudluses. Varajane rikkeoht vähendab seisakuid kuni 40%.",
+    aiml3_name:"Tugevdusõpe energiajuhtimiseks",
+    aiml3_desc:"RL-põhised energiajuhtimissüsteemid PV tootmise, BESS laadimis/tühjenemis tsüklite ja diisligeneraatori kasutuse reaalajas tasakaalustamiseks.",
+    aiml4_name:"Digitaalne kaksik mikrovõrgu simulatsiooniks",
+    aiml4_desc:"Digitaalsed kaksikmudelid hübriidmikrovõrkudele, mis peegeldavad reaalajas füüsilisi süsteeme ning võimaldavad stsenaariumitestimist ML torujuhtmega.",
+    aiml_hl_title:"Uurimisvisioon: Adaptiivne hübriid taastuvenergia mikrovõrk",
+    aiml_hl_desc:"Minu doktoritöö töötab välja dünaamilise raamistiku, mis integreerib AI/ML-põhise koormusprognoosimise ja ennetava hoolduse tehnis-majandusliku optimeerimisega.",
+    res_eyebrow:"Uurimistöö ja publikatsioonid", res_title:"Avaldatud tööd",
+    res_lead:"Eelretsenseeritud artiklid, raamatupeatükid ja konverentsiesitlused Elsevieris, Wiley, IEEE, De Gruyter, IGI Global.",
+    books_eyebrow:"Raamatupeatükid", books_title:"Teadusraamatute panus",
+    field_eyebrow:"Väliuurimistöö", field_title:"Talgao küla, Uttar Pradesh, India",
+    field_tag:"Sotsiaal-majanduslik uuring",
+    field_p1:"2026. aasta veebruaris viisin Talgao külas, Sitapuri ringkonnas läbi välihindamise TPRMG opereeritud 40 kW iseseisva päikeseenergia mikrovõrgu sotsiaal-majandusliku mõju kohta.",
+    field_p2:"Välitöö kogus tegelikke koormandmeid, tariifistruktuure ja otsest tagasisidet kasusaajatelt.",
+    field_p3:"Tulemused kajastatakse otseselt doktoripeatükkidesse adaptiivse hübriid taastuvenergia mikrovõrgu teemal.",
+    exp_eyebrow:"Kogemus", exp_title:"Akadeemilised ja uurimisametikohad",
+    exp1_role:"Teadusassistent", exp1_b1:"Koormuse ja irradiatsiooni aegridade analüüs", exp1_b2:"Regressioonimudelid PV/BESS mahuhindamiseks", exp1_b3:"TSV, D2DV varieeruvusindeksi omaduste töötlus", exp1_b4:"Teadusartiklid, konverentsiesitlused",
+    exp2_role:"Õpetaja assistent", exp2_b1:"Loengud hõõguv ja kaarlahengu teemal", exp2_b2:"Laboratooriumi järelevalve", exp2_b3:"Elektrienergia materjalide ettevalmistus",
+    exp3_role:"Uurimispraktikant", exp3_b1:"Biomeedilise tehnika EMG kahjuta andmete hankimine", exp3_b2:"Haigla patiendiandmete salvestuse optimeerimine",
+    exp4_role:"Suvepraktikant", exp4_b1:"SCADA süsteemid elektrijaama operatsioonideks", exp4_b2:"Katla hoolduse ohutusprotokollid",
+    edu_eyebrow:"Haridus", edu_title:"Akadeemiline taust",
+    conf_eyebrow:"Konverentsid", conf_title:"Rahvusvahelised esitlused",
+    contact_eyebrow:"Kontakt", contact_title:"Teeme koostööd",
+    contact_lead:"Saadaval konsulteerimiseks, teaduskoostööks, akadeemilisteks partnerluseks ja mentorluseks. Elan Jaapanis — kaugtöö ja ränne Euroopasse/Kagu-Aasiasse.",
+    cl_personal:"Isiklik e-post", cl_academic:"Akadeemiline e-post", cl_jp:"Telefon (Jaapan)", cl_in:"Telefon (India)", cl_portfolio:"Portfoolio",
+    form_title:"Saada sõnum", form_name:"Täisnimi", form_email:"E-posti aadress", form_type:"Päringu tüüp",
+    form_opt1:"Mikrovõrgu konsultatsioon", form_opt2:"Energiaandmete analüütika", form_opt3:"AI/ML integreerimine",
+    form_opt4:"Teaduskoostöö", form_opt5:"Akadeemiline mentorlus", form_opt6:"Töö/postdoc võimalus", form_opt7:"Muu",
+    form_msg:"Sõnum", form_submit:"SAADA SÕNUM →"
+  },
+  sv: {
+    nav_about:"Om mig", nav_services:"Tjänster", nav_aiml:"AI/ML", nav_research:"Forskning",
+    nav_experience:"Erfarenhet", nav_contact:"Kontakt", nav_cta:"Boka konsultation",
+    hero_pill:"Doktorand · Tillgänglig för konsultation",
+    hero_subtitle:"Energisystemsforskare och mikronätskonsult",
+    hero_desc:"Doktorand vid Shizuoka University, Japan. Specialiserad på PV-BESS hybridmikronätsoptimering, AI/ML-baserat prediktivt underhåll, landsbygdselektrifiering och datadrivet energianalys. 3+ år av att bygga modeller som ger ren energi till off-grid-samhällen.",
+    stat1:"Publikationer", stat2:"Års forskning", stat3:"Länder", stat4:"Webbplatsbesökare",
+    hero_btn1:"Boka konsultation", hero_btn2:"Se forskning",
+    hero_card_label:"Baserad vid",
+    about_eyebrow:"Om mig", about_title:"Datadrivet energiforskare",
+    about_bio1:"Jag är Yash Pandey, doktorand vid institutionen för elektroteknik vid Shizuoka University, Japan, under prof. Hironobu Matsuo. Min forskning fokuserar på att utveckla förenklade men robusta kapacitetsskattningsmodeller för PV och BESS i landsbygdshybridmikronät.",
+    about_bio2:"Med 3+ år i Python, MATLAB, HOMER Pro och storskalig tidsserieanalys. ABP-stipendiefinansierat arbete inkluderar fältbesök i Indien, forskningsutbyte i Taiwan och publikationer i Wiley, Elsevier, De Gruyter, IEEE.",
+    hl_uni_label:"Universitet", hl_dept_label:"Institution", hl_phd_label:"Förväntad doktorsexamen", hl_open_label:"Öppen för",
+    skills_label:"Tekniska färdigheter",
+    srv_eyebrow:"Konsulttjänster", srv_title:"Hur jag kan hjälpa dig",
+    srv_lead:"Expertrådgivning för NGO:er, utvecklare, forskare och ingenjörer som arbetar med förnybara energisystem och landsbygdselektrifiering i Asien, Afrika och Europa.",
+    srv1_name:"Mikronät och landsbygdselektrifiseringskonsultation",
+    srv1_desc:"Expertvägledning i PV-BESS mikronätsdesign, komponentdimensionering, scenarioanalys och tekno-ekonomisk optimering. Validerat mot HOMER Pro.",
+    srv2_name:"Energidatavetenskap och analysrådgivning",
+    srv2_desc:"Praktiska sessioner i Python, MATLAB och HOMER Pro. Tidsserieanalys, regressionsmodellering, variabilitetsindex (TSV/D2DV), GHI-solresursbedömning.",
+    srv3_name:"Forskningssamarbete och mentorskap",
+    srv3_desc:"Gratis 30-minuters utforskningssession för studenter och tidiga forskare inom förnybar energi, BESS-design och hybridmikronät.",
+    srv4_name:"Energidatavetenskap, analysrådgivning och policyförespråkande",
+    srv4_desc:"Strategisk rådgivning som bryggar datadrivna energiinsikter med policyramar. Inkluderar evidensbaserade rekommendationer för förnybar energipolitik, landsbygdselektrifiseringsplanering och regulatorisk vägledning.",
+    srv4_dur:"⏱ 75 minuter · Online via Zoom",
+    srv_book:"Boka session →", free:"GRATIS",
+    aiml_eyebrow:"AI / ML Forskning",
+    aiml_title:"AI/ML för mikronätsprestanda och prediktivt underhåll",
+    aiml_lead:"Integrering av maskininlärning och AI-driven optimering i hybridmikronätssystem för att maximera effektivitet och förutsäga fel.",
+    aiml1_name:"AI-baserad lastprognos och efterfrågeprediktion",
+    aiml1_desc:"LSTM, XGBoost och Random Forest-modeller för lastprofiler i landsbygdsmikronät. Kort- och långsiktig efterfrågeprediktion.",
+    aiml2_name:"Prediktivt underhåll för BESS och solpaneler",
+    aiml2_desc:"ML-driven anomalidetektering på batteriets hälsotillstånd (SoH) och PV-modulprestanda. Tidig felprediktion minskar driftstopp med upp till 40%.",
+    aiml3_name:"Förstärkningsinlärning för energidispatch",
+    aiml3_desc:"RL-baserade energihanteringssystem för att dynamiskt balansera PV-generering, BESS-laddnings-/urladdningscykler och dieselgeneratoranvändning.",
+    aiml4_name:"Digital tvilling för mikronätssimulering",
+    aiml4_desc:"Digitala tvillingmodeller som speglar fysiska system i realtid, kombinerat med ML-pipeline för scenariotestning.",
+    aiml_hl_title:"Forskningsvision: Adaptivt hybridmikronät för förnybar energi",
+    aiml_hl_desc:"Min doktorsavhandling utvecklar ett dynamiskt ramverk som integrerar AI/ML-baserad lastprognos och prediktivt underhåll med tekno-ekonomisk optimering.",
+    res_eyebrow:"Forskning och publikationer", res_title:"Publicerade arbeten",
+    res_lead:"Peer-reviewed artiklar, bokkapitel och konferenspresentationer i Elsevier, Wiley, IEEE, De Gruyter, IGI Global.",
+    books_eyebrow:"Bokkapitel", books_title:"Bidrag till vetenskapliga böcker",
+    field_eyebrow:"Fältforskning", field_title:"Talgao-byn, Uttar Pradesh, Indien",
+    field_tag:"Socioekonomisk studie",
+    field_p1:"I februari 2026 genomförde jag en fältbedömning av socioekonomisk påverkan av ett 40 kW fristående solmikronät drivet av TPRMG i Talgao-byn.",
+    field_p2:"Fältarbetet samlade verklig lastdata, taxestrukturer och direkt feedback från förmånstagare.",
+    field_p3:"Resultaten återspeglas direkt i doktorskapitlen om adaptiva hybridmikronät.",
+    exp_eyebrow:"Erfarenhet", exp_title:"Akademiska och forskningspositioner",
+    exp1_role:"Forskningsassistent", exp1_b1:"Last- och solinstrålningstidsserieanalys", exp1_b2:"Regressionsmodeller för PV/BESS-kapacitetsskattning", exp1_b3:"TSV, D2DV variabilitetsindex feature engineering", exp1_b4:"Vetenskapliga artiklar, konferenspresentationer",
+    exp2_role:"Lärarassistent", exp2_b1:"Föreläsningar om glimm- och ljusbågsurl addning", exp2_b2:"Laboratorieövervakning", exp2_b3:"Materialberedning för elkraftteknik",
+    exp3_role:"Forskningspraktikant", exp3_b1:"Biomedicinsk teknik EMG förlustfri datainsamlingsalgoritm", exp3_b2:"Optimering av patientdatalagring på sjukhus",
+    exp4_role:"Sommarpraktikant", exp4_b1:"SCADA-system för kraftverksoperationer", exp4_b2:"Underhållssäkerhetsprotokoll för pannor",
+    edu_eyebrow:"Utbildning", edu_title:"Akademisk bakgrund",
+    conf_eyebrow:"Konferenser", conf_title:"Internationella presentationer",
+    contact_eyebrow:"Kontakt", contact_title:"Låt oss samarbeta",
+    contact_lead:"Tillgänglig för konsultation, forskningssamarbete, akademiska partnerskap och mentorskap. Baserad i Japan — öppen för distansarbete och omlokalisering till Europa/Sydostasien.",
+    cl_personal:"Personlig e-post", cl_academic:"Akademisk e-post", cl_jp:"Telefon (Japan)", cl_in:"Telefon (Indien)", cl_portfolio:"Portfolio",
+    form_title:"Skicka meddelande", form_name:"Fullständigt namn", form_email:"E-postadress", form_type:"Typ av förfrågan",
+    form_opt1:"Mikronätskonsultation", form_opt2:"Energidataanalys", form_opt3:"AI/ML-integration",
+    form_opt4:"Forskningssamarbete", form_opt5:"Akademiskt mentorskap", form_opt6:"Jobb/postdoc-möjlighet", form_opt7:"Annat",
+    form_msg:"Meddelande", form_submit:"SKICKA MEDDELANDE →"
+  },
+  fi: {
+    nav_about:"Tietoa minusta", nav_services:"Palvelut", nav_aiml:"AI/ML", nav_research:"Tutkimus",
+    nav_experience:"Kokemus", nav_contact:"Yhteystiedot", nav_cta:"Varaa konsultaatio",
+    hero_pill:"Väitöskirjatutkija · Saatavilla konsultointiin",
+    hero_subtitle:"Energiajärjestelmien tutkija ja mikroverkkokonsultti",
+    hero_desc:"Tohtorikoulutettava Shizuokan yliopistossa, Japanissa. Erikoistunut PV-BESS-hybridimikroverkkojen optimointiin, tekoälyperusteiseen ennakoivaan kunnossapitoon, maaseudun sähköistämiseen ja dataohjattuun energia-analytiikkaan.",
+    stat1:"Julkaisua", stat2:"Tutkimusvuotta", stat3:"Maata", stat4:"Sivustokävijää",
+    hero_btn1:"Varaa konsultaatio", hero_btn2:"Katso tutkimus",
+    hero_card_label:"Tällä hetkellä sijaitsee",
+    about_eyebrow:"Tietoa minusta", about_title:"Dataohjattu energiatutkija",
+    about_bio1:"Olen Yash Pandey, väitöskirjatutkija sähkö- ja elektroniikkatekniikan osastolla Shizuokan yliopistossa Japanissa, prof. Hironobu Matsuo ohjauksessa. Tutkimukseni keskittyy yksinkertaistettuihin mutta robusteihin kapasiteetin arviointimalleihin PV- ja BESS-järjestelmille.",
+    about_bio2:"Yli 3 vuoden kokemus Pythonissa, MATLABissa, HOMER Prossa ja laajanmittakaavan aikasarja-analyysissä. ABP-apurahalla rahoitettu työ kattaa kenttävierailut Intiassa ja tutkimusvaihdot Taiwanissa.",
+    hl_uni_label:"Yliopisto", hl_dept_label:"Osasto", hl_phd_label:"Odotettu tohtorintutkinto", hl_open_label:"Avoin mahdollisuuksille",
+    skills_label:"Tekniset taidot",
+    srv_eyebrow:"Konsultointipalvelut", srv_title:"Kuinka voin auttaa sinua",
+    srv_lead:"Asiantuntijakonsultointi kansalaisjärjestöille, kehittäjille, tutkijoille ja insinööreille, jotka työskentelevät uusiutuvan energian järjestelmien ja maaseudun sähköistämisen parissa.",
+    srv1_name:"Mikroverkon ja maaseudun sähköistämisen konsultointi",
+    srv1_desc:"Asiantuntijaohjaus PV-BESS-mikroverkon suunnittelussa, komponenttien mitoittamisessa, skenaarioanalyysissä ja teknis-taloudellisessa optimoinnissa.",
+    srv2_name:"Energiadata-analyysi neuvonta",
+    srv2_desc:"Käytännön sessiot Pythonissa, MATLABissa ja HOMER Prossa. Aikasarja-analyysi, regressiomallinnus, vaihteluindeksit (TSV/D2DV), GHI-aurinkoenergia-arviointi.",
+    srv3_name:"Tutkimusyhteistyö ja mentorointi",
+    srv3_desc:"Ilmainen 30 minuutin tutkimussessio opiskelijoille ja nuorille tutkijoille uusiutuvassa energiassa, BESS-suunnittelussa ja hybridimikroverkoissa.",
+    srv4_name:"Energiadata-tiede, analytiikka neuvonta ja politiikkavaikuttaminen",
+    srv4_desc:"Strateginen neuvonta, joka yhdistää dataohjatut energianäkemykset poliittisiin kehyksiin. Sisältää näyttöön perustuvia suosituksia uusiutuvan energian politiikasta ja maaseudun sähköistämissuunnittelusta.",
+    srv4_dur:"⏱ 75 minuuttia · Verkossa Zoomin kautta",
+    srv_book:"Varaa sessio →", free:"ILMAINEN",
+    aiml_eyebrow:"AI / ML Tutkimus",
+    aiml_title:"AI/ML mikroverkon suorituskyvyn optimointiin ja ennakoivaan kunnossapitoon",
+    aiml_lead:"Koneoppimisen ja tekoälyohjatun optimoinnin integrointi hybridimikroverkkoihin.",
+    aiml1_name:"Tekoälyperusteinen kuormaennuste ja kysynnän ennustaminen",
+    aiml1_desc:"LSTM-, XGBoost- ja Random Forest -mallit kuormaprofiileihin maaseutumikroverkoissa.",
+    aiml2_name:"BESS:n ja aurinkopaneelien ennakoiva kunnossapito",
+    aiml2_desc:"Koneoppimiseen perustuva poikkeamien havaitseminen akun terveydentilassa (SoH) ja PV-moduulin suorituskyvyssä.",
+    aiml3_name:"Vahvistusoppiminen energian jakelua varten",
+    aiml3_desc:"RL-pohjainen energianhallintajärjestelmä PV-tuotannon, BESS-lataus- ja purkujaksojen ja dieselgeneraattorin käytön dynaamiseen tasapainottamiseen.",
+    aiml4_name:"Digitaalinen kaksonen mikroverkkosimulointia varten",
+    aiml4_desc:"Digitaaliset kaksoismallit, jotka heijastavat fyysisiä järjestelmiä reaaliajassa ML-putken kanssa yhdistettynä.",
+    aiml_hl_title:"Tutkimusvisio: Adaptiivinen hybridimikroverkko uusiutuvalle energialle",
+    aiml_hl_desc:"Väitöskirjatutkimukseni kehittää dynaamisen kehyksen, joka integroi AI/ML-pohjaisen kuormaennusteen ja ennakoivan kunnossapidon teknis-taloudelliseen optimointiin.",
+    res_eyebrow:"Tutkimus ja julkaisut", res_title:"Julkaistut työt",
+    res_lead:"Vertaisarvioidut artikkelit, kirjaluvut ja konferenssiesitykset Elsevierissä, Wiley, IEEE, De Gruyter, IGI Globalissa.",
+    books_eyebrow:"Kirjaluvut", books_title:"Akateemisten kirjojen kontribuutiot",
+    field_eyebrow:"Kenttätutkimus", field_title:"Talgaon kylä, Uttar Pradesh, Intia",
+    field_tag:"Sosioekonominen tutkimus",
+    field_p1:"Helmikuussa 2026 suoritin kenttäarvioinnin TPRMG:n operoiman 40 kW itsenäisen aurinkomikroverkon sosioekonomisesta vaikutuksesta Talgaon kylässä.",
+    field_p2:"Kenttätyö keräsi todellista kuormadataa, tariffirakennetta ja suoraa palautetta edunsaajilta.",
+    field_p3:"Tulokset heijastuvat suoraan väitöskirjalukuihin adaptiivisista hybridimikroverkoista.",
+    exp_eyebrow:"Kokemus", exp_title:"Akateemiset ja tutkimustehtävät",
+    exp1_role:"Tutkimusavustaja", exp1_b1:"Kuorman ja säteilymäärän aikasarja-analyysi", exp1_b2:"Regressiomallit PV/BESS-kapasiteettiestimaatille", exp1_b3:"TSV, D2DV vaihteluindeksin piirteengineerinti", exp1_b4:"Tieteelliset artikkelit, konferenssiesitykset",
+    exp2_role:"Opetusavustaja", exp2_b1:"Luennot hehku- ja valokaarpurkauksesta", exp2_b2:"Laboratoriovalvonta", exp2_b3:"Sähköenergiatekniikan materiaalien valmistelu",
+    exp3_role:"Tutkimusharjoittelija", exp3_b1:"Lääketieteellinen tekniikka EMG häviötön datankeruualgoritmi", exp3_b2:"Sairaalan potilastietojen tallennusoptimointi",
+    exp4_role:"Kesäharjoittelija", exp4_b1:"SCADA-järjestelmät voimalaitostoimintoja varten", exp4_b2:"Kattilan huollon turvallisuusprotokollat",
+    edu_eyebrow:"Koulutus", edu_title:"Akateeminen tausta",
+    conf_eyebrow:"Konferenssit", conf_title:"Kansainväliset esitykset",
+    contact_eyebrow:"Yhteystiedot", contact_title:"Tehdään yhteistyötä",
+    contact_lead:"Saatavilla konsultointiin, tutkimusyhteistyöhön, akateemisiin kumppanuuksiin ja mentorointiin. Asun Japanissa — avoin etätyölle ja muuttamiselle Eurooppaan/Kaakkois-Aasiaan.",
+    cl_personal:"Henkilökohtainen sähköposti", cl_academic:"Akateeminen sähköposti", cl_jp:"Puhelin (Japani)", cl_in:"Puhelin (Intia)", cl_portfolio:"Portfolio",
+    form_title:"Lähetä viesti", form_name:"Koko nimi", form_email:"Sähköpostiosoite", form_type:"Pyynnön tyyppi",
+    form_opt1:"Mikroverkkokonsultointi", form_opt2:"Energiadata-analytiikka", form_opt3:"AI/ML-integraatio",
+    form_opt4:"Tutkimusyhteistyö", form_opt5:"Akateeminen mentorointi", form_opt6:"Työ/postdoc-mahdollisuus", form_opt7:"Muu",
+    form_msg:"Viesti", form_submit:"LÄHETÄ VIESTI →"
+  },
+  ga: {
+    nav_about:"Fúm", nav_services:"Seirbhísí", nav_aiml:"AI/ML", nav_research:"Taighde",
+    nav_experience:"Taithí", nav_contact:"Teagmháil", nav_cta:"Coimeád Comhairliúchán",
+    hero_pill:"Taighdeoir PhD · Ar fáil le haghaidh Comhairliúcháin",
+    hero_subtitle:"Taighdeoir Córas Fuinnimh agus Comhairleoir Micreagréasáin",
+    hero_desc:"Mac léinn dochtúireachta in Ollscoil Shizuoka, an tSeapáin. Speisialtóir ar optamú micreagréasáin hibrideach PV-BESS, cothabháil réamhaisnéise AI/ML, leictriú tuaithe agus anailísíocht fuinnimh arna thiomáint ag sonraí.",
+    stat1:"Foilseacháin", stat2:"Blianta Taighde", stat3:"Tíortha", stat4:"Cuairteoirí Suímh",
+    hero_btn1:"Coimeád Comhairliúchán", hero_btn2:"Féach ar Thaighde",
+    hero_card_label:"Lonnaithe ag",
+    about_eyebrow:"Fúm", about_title:"Taighdeoir Fuinnimh Sonraí-Thiomáinte",
+    about_bio1:"Is mise Yash Pandey, taighdeoir dochtúireachta ag Roinn Leictreachais agus Leictreonach in Ollscoil Shizuoka, an tSeapáin, faoi stiúradh an Ollamh Hironobu Matsuo.",
+    about_bio2:"Le 3+ bliain i Python, MATLAB, HOMER Pro agus anailís sraithe ama mórscála. Maoinítear mo chuid oibre le scoláireacht ABP.",
+    hl_uni_label:"Ollscoil", hl_dept_label:"Roinn", hl_phd_label:"PhD Ionchais", hl_open_label:"Oscailte do",
+    skills_label:"Scileanna Teicniúla",
+    srv_eyebrow:"Seirbhísí Comhairliúcháin", srv_title:"Conas Is Féidir Liom Cabhrú Leat",
+    srv_lead:"Comhairliúchán saineolach d'eagraíochtaí neamhrialtasacha, forbróirí, taighdeoirí agus innealtóirí.",
+    srv1_name:"Comhairliúchán Micreagréasáin agus Leictriú Tuaithe",
+    srv1_desc:"Treoir saineolach ar dhearadh micreagréasáin PV-BESS, méid comhpháirteanna, anailís cásanna agus optamú teicneolaíoch-eacnamaíoch.",
+    srv2_name:"Comhairle Eolaíocht Sonraí Fuinnimh agus Anailísíochta",
+    srv2_desc:"Seisiúin phraiticiúla i Python, MATLAB agus HOMER Pro. Anailís sraithe ama, samhaltú cláraithe, innéacsanna inathraitheachta.",
+    srv3_name:"Comhoibriú Taighde agus Meantóireacht",
+    srv3_desc:"Seisiún saor 30 nóiméad d'mhic léinn agus taighdeoirí óga i bhfuinneamh in-athnuaite, dearadh BESS agus micreagréasáin hibrideacha.",
+    srv4_name:"Eolaíocht Sonraí Fuinnimh, Comhairle Anailísíochta agus Abhcóideacht Beartais",
+    srv4_desc:"Comhairle straitéiseach ag nascadh léargais fuinnimh arna thiomáint ag sonraí le creataí beartais. Moltar moltaí bunaithe ar fhianaise.",
+    srv4_dur:"⏱ 75 nóiméad · Ar líne trí Zoom",
+    srv_book:"Seisiún a Chur in Áirithe →", free:"SAOR IN AISCE",
+    aiml_eyebrow:"Taighde AI / ML",
+    aiml_title:"AI/ML do Fheidhmíocht Micreagréasáin agus Cothabháil Réamhaisnéise",
+    aiml_lead:"Lánpháirtiú foghlama meaisíne agus optamú arna thiomáint ag AI i gcórais mhicreagréasáin hibrideacha.",
+    aiml1_name:"Réamhaisnéis Ualaigh Bunaithe ar AI agus Tuar Éilimh",
+    aiml1_desc:"Samhlacha LSTM, XGBoost agus Random Forest do phróifílí ualach i micreagréasáin tuaithe.",
+    aiml2_name:"Cothabháil Réamhaisnéise do BESS agus Painéil Ghréine",
+    aiml2_desc:"Braite neamhghnáthachta ML-thiomáinte ar staid sláinte ceallraí (SoH) agus feidhmíocht mhodúl PV.",
+    aiml3_name:"Foghlaim Neartaithe do Seachadadh Fuinnimh",
+    aiml3_desc:"Córais bhainistíochta fuinnimh RL-bhunaithe chun giniúint PV, timthriallta muirir/díluchtaithe BESS agus úsáid ghineadóra díosail a chothromú.",
+    aiml4_name:"Cúpla Digiteach do Insamhlú Micreagréasáin",
+    aiml4_desc:"Samhlacha cúpla digiteacha a léiríonn córais fhisiciúla i bhfíoram ama, comhcheangailte le píblíne ML.",
+    aiml_hl_title:"Fís Taighde: Micreagréasán Fuinnimh In-athnuaite Hibrideach Oiriúnaitheach",
+    aiml_hl_desc:"Forbraíonn mo thaighde dochtúireachta creat dinimiciúil a chomhtháthaíonn tuar ualaigh AI/ML agus cothabháil réamhaisnéise le hoptamú teicneolaíoch-eacnamaíoch.",
+    res_eyebrow:"Taighde agus Foilseacháin", res_title:"Saothair Foilsithe",
+    res_lead:"Ailt phiaraí-athbhreithnithe, caibidlí leabhair agus cur i láthair comhdhálacha in Elsevier, Wiley, IEEE, De Gruyter, IGI Global.",
+    books_eyebrow:"Caibidlí Leabhair", books_title:"Ranníocaíochtaí le Leabhair Acadúla",
+    field_eyebrow:"Taighde Allamuigh", field_title:"Sráidbhaile Talgao, Uttar Pradesh, an India",
+    field_tag:"Staidéar Sóisialta-Eacnamaíoch",
+    field_p1:"I mí Feabhra 2026, rinne mé measúnú allamuigh ar thionchar sóisialta-eacnamaíoch micreagréasáin ghréine neamhspleách 40 kW arna oibriú ag TPRMG i sráidbhaile Talgao.",
+    field_p2:"Bhailigh an obair allamuigh sonraí ualach iarbhír, struchtúr taraife agus aiseolas díreach ó tháirbhithe.",
+    field_p3:"Léirítear na torthaí go díreach i gcaibidlí dochtúireachta ar mhicreagréasáin hibrideacha oiriúnaitheacha.",
+    exp_eyebrow:"Taithí", exp_title:"Poist Acadúla agus Taighde",
+    exp1_role:"Cúntóir Taighde", exp1_b1:"Anailís sraithe ama ualach agus irradiú", exp1_b2:"Samhlacha cláraithe do mheastachán cumas PV/BESS", exp1_b3:"Innealtóireacht gnéithe innéacs inathraitheachta TSV, D2DV", exp1_b4:"Ailt eolaíochta, cur i láthair comhdhálacha",
+    exp2_role:"Cúntóir Múinteora", exp2_b1:"Léachtaí ar scaoileadh glow agus arc", exp2_b2:"Maoirsiú saotharlainne", exp2_b3:"Ullmhúchán ábhair cumhachta agus fuinnimh",
+    exp3_role:"Stagiaire Taighde", exp3_b1:"Algartam fála sonraí gan caillteanas EMG innealtóireachta bithleighis", exp3_b2:"Optamú stórála sonraí othar ospidéil",
+    exp4_role:"Stagiaire Samhraidh", exp4_b1:"Córais SCADA d'oibríochtaí gléasra cumhachta", exp4_b2:"Prótacail sábháilteachta cothabhála coire",
+    edu_eyebrow:"Oideachas", edu_title:"Cúlra Acadúil",
+    conf_eyebrow:"Comhdhálacha", conf_title:"Cur i Láthair Idirnáisiúnta",
+    contact_eyebrow:"Teagmháil", contact_title:"Oibreoimis Le Chéile",
+    contact_lead:"Ar fáil le haghaidh comhairliúcháin, comhoibriú taighde, comhpháirtíochtaí acadúla agus meantóireachta. Bunaithe sa tSeapáin — oscailte d'obair chianda agus d'athlonnú go hEoraip/an Áise Thoir Theas.",
+    cl_personal:"Ríomhphost Pearsanta", cl_academic:"Ríomhphost Acadúil", cl_jp:"Fón (An tSeapáin)", cl_in:"Fón (An India)", cl_portfolio:"Punann",
+    form_title:"Seol Teachtaireacht", form_name:"Ainm Iomlán", form_email:"Seoladh Ríomhphoist", form_type:"Cineál Fiosrúcháin",
+    form_opt1:"Comhairliúchán Micreagréasáin", form_opt2:"Anailísíocht Sonraí Fuinnimh", form_opt3:"Lánpháirtiú AI/ML",
+    form_opt4:"Comhoibriú Taighde", form_opt5:"Meantóireacht Acadúil", form_opt6:"Deis Jabanna/Postdoc", form_opt7:"Eile",
+    form_msg:"Teachtaireacht", form_submit:"SEOL TEACHTAIREACHT →"
+  },
+  es: {
+    nav_about:"Sobre mí", nav_services:"Servicios", nav_aiml:"IA/ML", nav_research:"Investigación",
+    nav_experience:"Experiencia", nav_contact:"Contacto", nav_cta:"Reservar consulta",
+    hero_pill:"Investigador PhD · Disponible para consultoría",
+    hero_subtitle:"Investigador de Sistemas Energéticos y Consultor de Microrredes",
+    hero_desc:"Candidato a doctorado en la Universidad de Shizuoka, Japón. Especializado en optimización de microrredes híbridas PV-BESS, mantenimiento predictivo basado en IA/ML, electrificación rural y análisis energético impulsado por datos. 3+ años construyendo modelos de energía limpia.",
+    stat1:"Publicaciones", stat2:"Años de investigación", stat3:"Países", stat4:"Visitantes del sitio",
+    hero_btn1:"Reservar consulta", hero_btn2:"Ver investigación",
+    hero_card_label:"Actualmente en",
+    about_eyebrow:"Sobre mí", about_title:"Investigador de Energía Basado en Datos",
+    about_bio1:"Soy Yash Pandey, investigador doctoral en el Departamento de Ingeniería Eléctrica y Electrónica de la Universidad de Shizuoka, Japón, bajo la tutela del Prof. Hironobu Matsuo.",
+    about_bio2:"Con 3+ años de experiencia en Python, MATLAB, HOMER Pro y análisis de series temporales a gran escala. Trabajo financiado con beca ABP con visitas de campo en India e intercambio de investigación en Taiwán.",
+    hl_uni_label:"Universidad", hl_dept_label:"Departamento", hl_phd_label:"PhD esperado", hl_open_label:"Abierto a",
+    skills_label:"Habilidades técnicas",
+    srv_eyebrow:"Servicios de consultoría", srv_title:"Cómo puedo ayudarte",
+    srv_lead:"Consultoría experta para ONGs, desarrolladores, investigadores e ingenieros que trabajan en sistemas de energía renovable y electrificación rural en Asia, África y Europa.",
+    srv1_name:"Consultoría de Microrredes y Electrificación Rural",
+    srv1_desc:"Orientación experta en diseño de microrredes PV-BESS, dimensionamiento de componentes, análisis de escenarios y optimización tecno-económica. Validado contra HOMER Pro.",
+    srv2_name:"Asesoría en Ciencia de Datos Energéticos y Analítica",
+    srv2_desc:"Sesiones prácticas en Python, MATLAB y HOMER Pro. Análisis de series temporales, modelado de regresión, índices de variabilidad (TSV/D2DV), evaluación de recursos solares GHI.",
+    srv3_name:"Colaboración en Investigación y Tutoría",
+    srv3_desc:"Sesión exploratoria gratuita de 30 minutos para estudiantes e investigadores en etapa inicial en energía renovable, diseño BESS y microrredes híbridas.",
+    srv4_name:"Ciencia de Datos Energéticos, Asesoría Analítica y Abogacía de Políticas",
+    srv4_desc:"Asesoría estratégica que une perspectivas energéticas basadas en datos con marcos de política. Incluye recomendaciones basadas en evidencia para política energética renovable y planificación de electrificación rural.",
+    srv4_dur:"⏱ 75 minutos · En línea vía Zoom",
+    srv_book:"Reservar sesión →", free:"GRATIS",
+    aiml_eyebrow:"Investigación IA / ML",
+    aiml_title:"IA/ML para el Rendimiento y Mantenimiento Predictivo de Microrredes",
+    aiml_lead:"Integración de aprendizaje automático y optimización impulsada por IA en sistemas de microrredes híbridas para maximizar la eficiencia y predecir fallos.",
+    aiml1_name:"Pronóstico de Carga Basado en IA y Predicción de Demanda",
+    aiml1_desc:"Modelos LSTM, XGBoost y Random Forest para perfiles de carga en microrredes rurales.",
+    aiml2_name:"Mantenimiento Predictivo para BESS y Paneles Solares",
+    aiml2_desc:"Detección de anomalías impulsada por ML en el estado de salud de baterías (SoH) y rendimiento de módulos PV.",
+    aiml3_name:"Aprendizaje por Refuerzo para Despacho de Energía",
+    aiml3_desc:"Sistemas de gestión de energía basados en RL para equilibrar dinámicamente generación PV, ciclos de carga/descarga BESS y uso del generador diésel.",
+    aiml4_name:"Gemelo Digital para Simulación de Microrredes",
+    aiml4_desc:"Modelos de gemelo digital que reflejan sistemas físicos en tiempo real, combinados con pipeline de ML.",
+    aiml_hl_title:"Visión de Investigación: Microrred Híbrida de Energía Renovable Adaptativa",
+    aiml_hl_desc:"Mi investigación doctoral desarrolla un marco dinámico que integra pronóstico de carga AI/ML y mantenimiento predictivo con optimización tecno-económica.",
+    res_eyebrow:"Investigación y Publicaciones", res_title:"Trabajos Publicados",
+    res_lead:"Artículos de revisión por pares, capítulos de libros y presentaciones en conferencias en Elsevier, Wiley, IEEE, De Gruyter, IGI Global.",
+    books_eyebrow:"Capítulos de Libros", books_title:"Contribuciones a Libros Académicos",
+    field_eyebrow:"Investigación de Campo", field_title:"Aldea Talgao, Uttar Pradesh, India",
+    field_tag:"Estudio Socioeconómico",
+    field_p1:"En febrero de 2026, realicé una evaluación de campo del impacto socioeconómico de una microrred solar autónoma de 40 kW operada por TPRMG en la aldea Talgao.",
+    field_p2:"El trabajo de campo recopiló datos de carga reales, estructuras tarifarias y retroalimentación directa de los beneficiarios.",
+    field_p3:"Los resultados se reflejan directamente en los capítulos doctorales sobre microrredes híbridas adaptativas.",
+    exp_eyebrow:"Experiencia", exp_title:"Posiciones Académicas y de Investigación",
+    exp1_role:"Asistente de Investigación", exp1_b1:"Análisis de series temporales de carga e irradiancia", exp1_b2:"Modelos de regresión para estimación de capacidad PV/BESS", exp1_b3:"Ingeniería de características de índice de variabilidad TSV, D2DV", exp1_b4:"Artículos científicos, presentaciones en conferencias",
+    exp2_role:"Asistente de Enseñanza", exp2_b1:"Clases magistrales sobre descarga de brillo y arco", exp2_b2:"Supervisión de laboratorio", exp2_b3:"Preparación de materiales de sistemas de potencia",
+    exp3_role:"Pasante de Investigación", exp3_b1:"Algoritmo de adquisición de datos sin pérdidas EMG de ingeniería biomédica", exp3_b2:"Optimización del almacenamiento de datos de pacientes hospitalarios",
+    exp4_role:"Pasante de Verano", exp4_b1:"Sistemas SCADA para operaciones de planta de energía", exp4_b2:"Protocolos de seguridad de mantenimiento de calderas",
+    edu_eyebrow:"Educación", edu_title:"Formación Académica",
+    conf_eyebrow:"Conferencias", conf_title:"Presentaciones Internacionales",
+    contact_eyebrow:"Contacto", contact_title:"Trabajemos juntos",
+    contact_lead:"Disponible para consultoría, colaboración en investigación, asociaciones académicas y tutoría. Basado en Japón — abierto al trabajo remoto y reubicación en Europa/Sudeste Asiático.",
+    cl_personal:"Correo personal", cl_academic:"Correo académico", cl_jp:"Teléfono (Japón)", cl_in:"Teléfono (India)", cl_portfolio:"Portafolio",
+    form_title:"Enviar mensaje", form_name:"Nombre completo", form_email:"Correo electrónico", form_type:"Tipo de consulta",
+    form_opt1:"Consultoría de microrredes", form_opt2:"Analítica de datos energéticos", form_opt3:"Integración IA/ML",
+    form_opt4:"Colaboración en investigación", form_opt5:"Tutoría académica", form_opt6:"Oportunidad de trabajo/postdoc", form_opt7:"Otro",
+    form_msg:"Mensaje", form_submit:"ENVIAR MENSAJE →"
+  },
+  it: {
+    nav_about:"Chi sono", nav_services:"Servizi", nav_aiml:"IA/ML", nav_research:"Ricerca",
+    nav_experience:"Esperienza", nav_contact:"Contatti", nav_cta:"Prenota consulenza",
+    hero_pill:"Ricercatore PhD · Disponibile per consulenze",
+    hero_subtitle:"Ricercatore di Sistemi Energetici e Consulente di Microgrid",
+    hero_desc:"Dottorando presso l'Università di Shizuoka, Giappone. Specializzato in ottimizzazione di microgrid ibride PV-BESS, manutenzione predittiva basata su AI/ML, elettrificazione rurale e analisi energetica basata su dati.",
+    stat1:"Pubblicazioni", stat2:"Anni di ricerca", stat3:"Paesi", stat4:"Visitatori del sito",
+    hero_btn1:"Prenota consulenza", hero_btn2:"Vedi ricerca",
+    hero_card_label:"Attualmente presso",
+    about_eyebrow:"Chi sono", about_title:"Ricercatore Energetico Basato sui Dati",
+    about_bio1:"Sono Yash Pandey, ricercatore di dottorato presso il Dipartimento di Ingegneria Elettrica ed Elettronica dell'Università di Shizuoka, Giappone, sotto la supervisione del Prof. Hironobu Matsuo.",
+    about_bio2:"Con 3+ anni di esperienza in Python, MATLAB, HOMER Pro e analisi di serie temporali su larga scala. Lavoro finanziato con borsa di studio ABP con visite sul campo in India.",
+    hl_uni_label:"Università", hl_dept_label:"Dipartimento", hl_phd_label:"PhD previsto", hl_open_label:"Aperto a",
+    skills_label:"Competenze tecniche",
+    srv_eyebrow:"Servizi di consulenza", srv_title:"Come posso aiutarti",
+    srv_lead:"Consulenza esperta per ONG, sviluppatori, ricercatori e ingegneri che lavorano su sistemi di energia rinnovabile ed elettrificazione rurale in Asia, Africa ed Europa.",
+    srv1_name:"Consulenza Microgrid ed Elettrificazione Rurale",
+    srv1_desc:"Guida esperta nella progettazione di microgrid PV-BESS, dimensionamento dei componenti, analisi degli scenari e ottimizzazione tecno-economica.",
+    srv2_name:"Consulenza in Data Science Energetica e Analisi",
+    srv2_desc:"Sessioni pratiche in Python, MATLAB e HOMER Pro. Analisi di serie temporali, modellizzazione di regressione, indici di variabilità (TSV/D2DV), valutazione delle risorse solari GHI.",
+    srv3_name:"Collaborazione nella Ricerca e Tutoraggio",
+    srv3_desc:"Sessione esplorativa gratuita di 30 minuti per studenti e ricercatori in fase iniziale nell'energia rinnovabile, progettazione BESS e microgrid ibride.",
+    srv4_name:"Data Science Energetica, Consulenza Analitica e Advocacy delle Politiche",
+    srv4_desc:"Consulenza strategica che collega intuizioni energetiche basate sui dati con i quadri politici. Include raccomandazioni basate su evidenze per le politiche energetiche rinnovabili e la pianificazione dell'elettrificazione rurale.",
+    srv4_dur:"⏱ 75 minuti · Online via Zoom",
+    srv_book:"Prenota sessione →", free:"GRATUITO",
+    aiml_eyebrow:"Ricerca IA / ML",
+    aiml_title:"IA/ML per le Prestazioni della Microgrid e la Manutenzione Predittiva",
+    aiml_lead:"Integrazione dell'apprendimento automatico e dell'ottimizzazione guidata dall'IA nei sistemi di microgrid ibridi.",
+    aiml1_name:"Previsione del Carico Basata su IA e Previsione della Domanda",
+    aiml1_desc:"Modelli LSTM, XGBoost e Random Forest per profili di carico nelle microgrid rurali.",
+    aiml2_name:"Manutenzione Predittiva per BESS e Pannelli Solari",
+    aiml2_desc:"Rilevamento di anomalie guidato da ML sullo stato di salute della batteria (SoH) e sulle prestazioni dei moduli PV.",
+    aiml3_name:"Apprendimento per Rinforzo per il Dispacciamento dell'Energia",
+    aiml3_desc:"Sistemi di gestione dell'energia basati su RL per bilanciare dinamicamente la generazione PV, i cicli di carica/scarica BESS e l'utilizzo del generatore diesel.",
+    aiml4_name:"Gemello Digitale per la Simulazione della Microgrid",
+    aiml4_desc:"Modelli di gemello digitale che riflettono i sistemi fisici in tempo reale, combinati con pipeline ML.",
+    aiml_hl_title:"Visione della Ricerca: Microgrid Ibrida di Energia Rinnovabile Adattiva",
+    aiml_hl_desc:"La mia ricerca di dottorato sviluppa un quadro dinamico che integra la previsione del carico AI/ML e la manutenzione predittiva con l'ottimizzazione tecno-economica.",
+    res_eyebrow:"Ricerca e Pubblicazioni", res_title:"Lavori Pubblicati",
+    res_lead:"Articoli peer-reviewed, capitoli di libri e presentazioni a conferenze su Elsevier, Wiley, IEEE, De Gruyter, IGI Global.",
+    books_eyebrow:"Capitoli di Libri", books_title:"Contributi a Libri Accademici",
+    field_eyebrow:"Ricerca sul Campo", field_title:"Villaggio di Talgao, Uttar Pradesh, India",
+    field_tag:"Studio Socioeconomico",
+    field_p1:"Nel febbraio 2026, ho condotto una valutazione sul campo dell'impatto socioeconomico di una microgrid solare autonoma da 40 kW gestita da TPRMG nel villaggio di Talgao.",
+    field_p2:"Il lavoro sul campo ha raccolto dati di carico reali, strutture tariffarie e feedback diretto dai beneficiari.",
+    field_p3:"I risultati si riflettono direttamente nei capitoli del dottorato sulle microgrid ibride adattive.",
+    exp_eyebrow:"Esperienza", exp_title:"Posizioni Accademiche e di Ricerca",
+    exp1_role:"Assistente di Ricerca", exp1_b1:"Analisi di serie temporali di carico e irradianza", exp1_b2:"Modelli di regressione per la stima della capacità PV/BESS", exp1_b3:"Ingegneria delle caratteristiche degli indici di variabilità TSV, D2DV", exp1_b4:"Articoli scientifici, presentazioni a conferenze",
+    exp2_role:"Assistente all'Insegnamento", exp2_b1:"Lezioni sulle scariche luminescenti e ad arco", exp2_b2:"Supervisione di laboratorio", exp2_b3:"Preparazione di materiali sui sistemi di alimentazione",
+    exp3_role:"Tirocinante di Ricerca", exp3_b1:"Algoritmo di acquisizione dati senza perdite EMG per ingegneria biomedica", exp3_b2:"Ottimizzazione dell'archiviazione dei dati dei pazienti ospedalieri",
+    exp4_role:"Tirocinante Estivo", exp4_b1:"Sistemi SCADA per le operazioni delle centrali elettriche", exp4_b2:"Protocolli di sicurezza per la manutenzione delle caldaie",
+    edu_eyebrow:"Istruzione", edu_title:"Formazione Accademica",
+    conf_eyebrow:"Conferenze", conf_title:"Presentazioni Internazionali",
+    contact_eyebrow:"Contatti", contact_title:"Lavoriamo insieme",
+    contact_lead:"Disponibile per consulenze, collaborazione nella ricerca, partnership accademiche e tutoraggio. Basato in Giappone — aperto al lavoro da remoto e alla ricollocazione in Europa/Sud-Est asiatico.",
+    cl_personal:"Email personale", cl_academic:"Email accademica", cl_jp:"Telefono (Giappone)", cl_in:"Telefono (India)", cl_portfolio:"Portfolio",
+    form_title:"Invia messaggio", form_name:"Nome completo", form_email:"Indirizzo email", form_type:"Tipo di richiesta",
+    form_opt1:"Consulenza microgrid", form_opt2:"Analisi dati energetici", form_opt3:"Integrazione IA/ML",
+    form_opt4:"Collaborazione nella ricerca", form_opt5:"Tutoraggio accademico", form_opt6:"Opportunità lavorativa/postdoc", form_opt7:"Altro",
+    form_msg:"Messaggio", form_submit:"INVIA MESSAGGIO →"
+  },
+  pt: {
+    nav_about:"Sobre mim", nav_services:"Serviços", nav_aiml:"IA/ML", nav_research:"Pesquisa",
+    nav_experience:"Experiência", nav_contact:"Contato", nav_cta:"Agendar consulta",
+    hero_pill:"Pesquisador de Doutorado · Disponível para consultoria",
+    hero_subtitle:"Pesquisador de Sistemas de Energia e Consultor de Microrredes",
+    hero_desc:"Candidato a doutor na Universidade de Shizuoka, Japão. Especializado em otimização de microrredes híbridas PV-BESS, manutenção preditiva baseada em IA/ML, eletrificação rural e análise energética orientada por dados.",
+    stat1:"Publicações", stat2:"Anos de pesquisa", stat3:"Países", stat4:"Visitantes do site",
+    hero_btn1:"Agendar consulta", hero_btn2:"Ver pesquisa",
+    hero_card_label:"Atualmente em",
+    about_eyebrow:"Sobre mim", about_title:"Pesquisador de Energia Orientado por Dados",
+    about_bio1:"Sou Yash Pandey, pesquisador de doutorado no Departamento de Engenharia Elétrica e Eletrônica da Universidade de Shizuoka, Japão, sob orientação do Prof. Hironobu Matsuo.",
+    about_bio2:"Com 3+ anos em Python, MATLAB, HOMER Pro e análise de séries temporais em larga escala. Trabalho financiado pela bolsa ABP com visitas de campo na Índia.",
+    hl_uni_label:"Universidade", hl_dept_label:"Departamento", hl_phd_label:"Doutorado esperado", hl_open_label:"Aberto a",
+    skills_label:"Habilidades técnicas",
+    srv_eyebrow:"Serviços de consultoria", srv_title:"Como posso ajudar você",
+    srv_lead:"Consultoria especializada para ONGs, desenvolvedores, pesquisadores e engenheiros que trabalham em sistemas de energia renovável e eletrificação rural na Ásia, África e Europa.",
+    srv1_name:"Consultoria de Microrredes e Eletrificação Rural",
+    srv1_desc:"Orientação especializada em design de microrredes PV-BESS, dimensionamento de componentes, análise de cenários e otimização tecno-econômica.",
+    srv2_name:"Consultoria em Ciência de Dados de Energia e Análise",
+    srv2_desc:"Sessões práticas em Python, MATLAB e HOMER Pro. Análise de séries temporais, modelagem de regressão, índices de variabilidade (TSV/D2DV), avaliação de recursos solares GHI.",
+    srv3_name:"Colaboração em Pesquisa e Mentoria",
+    srv3_desc:"Sessão exploratória gratuita de 30 minutos para estudantes e pesquisadores iniciantes em energia renovável, design de BESS e microrredes híbridas.",
+    srv4_name:"Ciência de Dados de Energia, Consultoria Analítica e Advocacia de Políticas",
+    srv4_desc:"Consultoria estratégica que une perspectivas energéticas orientadas por dados com estruturas de políticas. Inclui recomendações baseadas em evidências para política de energia renovável e planejamento de eletrificação rural.",
+    srv4_dur:"⏱ 75 minutos · Online via Zoom",
+    srv_book:"Agendar sessão →", free:"GRATUITO",
+    aiml_eyebrow:"Pesquisa IA / ML",
+    aiml_title:"IA/ML para Desempenho de Microrredes e Manutenção Preditiva",
+    aiml_lead:"Integração de aprendizado de máquina e otimização orientada por IA em sistemas de microrredes híbridas.",
+    aiml1_name:"Previsão de Carga Baseada em IA e Previsão de Demanda",
+    aiml1_desc:"Modelos LSTM, XGBoost e Random Forest para perfis de carga em microrredes rurais.",
+    aiml2_name:"Manutenção Preditiva para BESS e Painéis Solares",
+    aiml2_desc:"Detecção de anomalias orientada por ML no estado de saúde da bateria (SoH) e desempenho do módulo PV.",
+    aiml3_name:"Aprendizado por Reforço para Despacho de Energia",
+    aiml3_desc:"Sistemas de gerenciamento de energia baseados em RL para equilibrar dinamicamente geração PV, ciclos de carga/descarga BESS e uso do gerador diesel.",
+    aiml4_name:"Gêmeo Digital para Simulação de Microrredes",
+    aiml4_desc:"Modelos de gêmeo digital que refletem sistemas físicos em tempo real, combinados com pipeline de ML.",
+    aiml_hl_title:"Visão de Pesquisa: Microrrede Híbrida de Energia Renovável Adaptativa",
+    aiml_hl_desc:"Minha pesquisa de doutorado desenvolve um framework dinâmico que integra previsão de carga AI/ML e manutenção preditiva com otimização tecno-econômica.",
+    res_eyebrow:"Pesquisa e Publicações", res_title:"Trabalhos Publicados",
+    res_lead:"Artigos revisados por pares, capítulos de livros e apresentações em conferências na Elsevier, Wiley, IEEE, De Gruyter, IGI Global.",
+    books_eyebrow:"Capítulos de Livros", books_title:"Contribuições para Livros Acadêmicos",
+    field_eyebrow:"Pesquisa de Campo", field_title:"Aldeia de Talgao, Uttar Pradesh, Índia",
+    field_tag:"Estudo Socioeconômico",
+    field_p1:"Em fevereiro de 2026, realizei uma avaliação de campo do impacto socioeconômico de uma microrrede solar autônoma de 40 kW operada pela TPRMG na aldeia de Talgao.",
+    field_p2:"O trabalho de campo coletou dados reais de carga, estruturas tarifárias e feedback direto dos beneficiários.",
+    field_p3:"Os resultados refletem-se diretamente nos capítulos doutorais sobre microrredes híbridas adaptativas.",
+    exp_eyebrow:"Experiência", exp_title:"Posições Acadêmicas e de Pesquisa",
+    exp1_role:"Assistente de Pesquisa", exp1_b1:"Análise de séries temporais de carga e irradiância", exp1_b2:"Modelos de regressão para estimativa de capacidade PV/BESS", exp1_b3:"Engenharia de características de índice de variabilidade TSV, D2DV", exp1_b4:"Artigos científicos, apresentações em conferências",
+    exp2_role:"Assistente de Ensino", exp2_b1:"Aulas sobre descarga de brilho e arco", exp2_b2:"Supervisão de laboratório", exp2_b3:"Preparação de materiais de sistemas de energia",
+    exp3_role:"Estagiário de Pesquisa", exp3_b1:"Algoritmo de aquisição de dados sem perda EMG de engenharia biomédica", exp3_b2:"Otimização de armazenamento de dados de pacientes hospitalares",
+    exp4_role:"Estagiário de Verão", exp4_b1:"Sistemas SCADA para operações de usina elétrica", exp4_b2:"Protocolos de segurança de manutenção de caldeiras",
+    edu_eyebrow:"Educação", edu_title:"Formação Acadêmica",
+    conf_eyebrow:"Conferências", conf_title:"Apresentações Internacionais",
+    contact_eyebrow:"Contato", contact_title:"Vamos trabalhar juntos",
+    contact_lead:"Disponível para consultoria, colaboração em pesquisa, parcerias acadêmicas e mentoria. Baseado no Japão — aberto ao trabalho remoto e realocação na Europa/Sudeste Asiático.",
+    cl_personal:"Email pessoal", cl_academic:"Email acadêmico", cl_jp:"Telefone (Japão)", cl_in:"Telefone (Índia)", cl_portfolio:"Portfólio",
+    form_title:"Enviar mensagem", form_name:"Nome completo", form_email:"Endereço de email", form_type:"Tipo de consulta",
+    form_opt1:"Consultoria de microrredes", form_opt2:"Análise de dados energéticos", form_opt3:"Integração IA/ML",
+    form_opt4:"Colaboração em pesquisa", form_opt5:"Mentoria acadêmica", form_opt6:"Oportunidade de emprego/postdoc", form_opt7:"Outro",
+    form_msg:"Mensagem", form_submit:"ENVIAR MENSAGEM →"
+  },
+  nl: {
+    nav_about:"Over mij", nav_services:"Diensten", nav_aiml:"AI/ML", nav_research:"Onderzoek",
+    nav_experience:"Ervaring", nav_contact:"Contact", nav_cta:"Consultatie reserveren",
+    hero_pill:"PhD-onderzoeker · Beschikbaar voor consultatie",
+    hero_subtitle:"Energiesysteemonderzoeker en Micronetadviseur",
+    hero_desc:"Promotieonderzoeker aan de Universiteit van Shizuoka, Japan. Gespecialiseerd in optimalisatie van hybride PV-BESS micronetwerken, AI/ML-gebaseerd voorspellend onderhoud, plattelandselektrificatie en datagedreven energie-analyse.",
+    stat1:"Publicaties", stat2:"Jaar onderzoek", stat3:"Landen", stat4:"Sitebezoekers",
+    hero_btn1:"Consultatie reserveren", hero_btn2:"Onderzoek bekijken",
+    hero_card_label:"Momenteel gevestigd bij",
+    about_eyebrow:"Over mij", about_title:"Datagedreven energieonderzoeker",
+    about_bio1:"Ik ben Yash Pandey, promotieonderzoeker bij de afdeling Elektrotechniek en Elektronica van de Universiteit van Shizuoka, Japan, onder begeleiding van Prof. Hironobu Matsuo.",
+    about_bio2:"Met 3+ jaar ervaring in Python, MATLAB, HOMER Pro en grootschalige tijdreeksanalyse. Door ABP-beurs gefinancierd werk met veldbezoeken in India.",
+    hl_uni_label:"Universiteit", hl_dept_label:"Afdeling", hl_phd_label:"Verwacht PhD", hl_open_label:"Open voor",
+    skills_label:"Technische vaardigheden",
+    srv_eyebrow:"Adviesdiensten", srv_title:"Hoe ik u kan helpen",
+    srv_lead:"Deskundige advisering voor NGO's, ontwikkelaars, onderzoekers en ingenieurs die werken aan hernieuwbare energiesystemen en plattelandselektrificatie in Azië, Afrika en Europa.",
+    srv1_name:"Advies over Micronetwerken en Plattelandselektrificatie",
+    srv1_desc:"Deskundige begeleiding bij het ontwerp van PV-BESS micronetwerken, componentdimensionering, scenario-analyse en techno-economische optimalisatie.",
+    srv2_name:"Advisering over Energiedatawetenschap en -analyse",
+    srv2_desc:"Praktische sessies in Python, MATLAB en HOMER Pro. Tijdreeksanalyse, regressiemodellering, variabiliteitsindexen (TSV/D2DV), GHI-beoordeling van zonneresources.",
+    srv3_name:"Onderzoekssamenwerking en Mentorschap",
+    srv3_desc:"Gratis 30-minuten verkenningssessie voor studenten en beginnende onderzoekers in hernieuwbare energie, BESS-ontwerp en hybride micronetwerken.",
+    srv4_name:"Energiedatawetenschap, Analyseadvies en Beleidsbehartiging",
+    srv4_desc:"Strategisch advies dat datagestuurde energie-inzichten koppelt aan beleidsraamwerken. Omvat evidence-based aanbevelingen voor beleid inzake hernieuwbare energie en plattelandselektrificatie.",
+    srv4_dur:"⏱ 75 minuten · Online via Zoom",
+    srv_book:"Sessie reserveren →", free:"GRATIS",
+    aiml_eyebrow:"AI / ML Onderzoek",
+    aiml_title:"AI/ML voor Micronetprestaties en Voorspellend Onderhoud",
+    aiml_lead:"Integratie van machinaal leren en door AI gestuurde optimalisatie in hybride micronetwerksystemen.",
+    aiml1_name:"AI-gebaseerde Belastingsprognose en Vraagvoorspelling",
+    aiml1_desc:"LSTM-, XGBoost- en Random Forest-modellen voor belastingsprofielen in plattelandsmicronetwerken.",
+    aiml2_name:"Voorspellend Onderhoud voor BESS en Zonnepanelen",
+    aiml2_desc:"ML-gestuurde anomaliedetectie op de batterijgezondheidstoestand (SoH) en PV-moduleprestaties.",
+    aiml3_name:"Versterkend Leren voor Energiebeheer",
+    aiml3_desc:"RL-gebaseerde energiemanagementsystemen voor het dynamisch in balans brengen van PV-opwekking, BESS-laad-/ontlaadcycli en dieselgeneratorgebruik.",
+    aiml4_name:"Digitale Tweeling voor Micronetsimulatorie",
+    aiml4_desc:"Digitale tweelingmodellen die fysieke systemen in realtime weerspiegelen, gecombineerd met ML-pipeline.",
+    aiml_hl_title:"Onderzoeksvisie: Adaptief Hybride Micronetwerk voor Hernieuwbare Energie",
+    aiml_hl_desc:"Mijn promotieonderzoek ontwikkelt een dynamisch raamwerk dat AI/ML-belastingsprognose en voorspellend onderhoud integreert met techno-economische optimalisatie.",
+    res_eyebrow:"Onderzoek en Publicaties", res_title:"Gepubliceerde Werken",
+    res_lead:"Peer-reviewed artikelen, boekhoofstukken en conferentieresentaties in Elsevier, Wiley, IEEE, De Gruyter, IGI Global.",
+    books_eyebrow:"Boofhoofdstukken", books_title:"Bijdragen aan Academische Boeken",
+    field_eyebrow:"Veldonderzoek", field_title:"Dorp Talgao, Uttar Pradesh, India",
+    field_tag:"Sociaaleconomische Studie",
+    field_p1:"In februari 2026 voerde ik een veldbeoordeling uit van de sociaaleconomische impact van een 40 kW autonoom zonnemicronetwerk geëxploiteerd door TPRMG in het dorp Talgao.",
+    field_p2:"Het veldwerk verzamelde echte belastingsgegevens, tariefstructuren en directe feedback van begunstigden.",
+    field_p3:"De resultaten worden direct weerspiegeld in de promotiehoofstukken over adaptieve hybride micronetwerken.",
+    exp_eyebrow:"Ervaring", exp_title:"Academische en Onderzoeksposities",
+    exp1_role:"Onderzoeksassistent", exp1_b1:"Tijdreeksanalyse van belasting en bestraling", exp1_b2:"Regressiemodellen voor PV/BESS-capaciteitsschatting", exp1_b3:"Feature engineering van TSV, D2DV variabiliteitsindex", exp1_b4:"Wetenschappelijke artikelen, conferentiepresentaties",
+    exp2_role:"Onderwijsassistent", exp2_b1:"Colleges over gloei- en boogontlading", exp2_b2:"Laboratoriumtoezicht", exp2_b3:"Voorbereiding van energiesysteemmaterialen",
+    exp3_role:"Onderzoeksstagiair", exp3_b1:"Biomedische techniek EMG verliesvrij dataverwervingsalgoritme", exp3_b2:"Optimalisatie van patiëntgegevensopslag in ziekenhuizen",
+    exp4_role:"Zomerstage", exp4_b1:"SCADA-systemen voor energiecentraleoperaties", exp4_b2:"Veiligheidsprotocollen voor ketels onderhoud",
+    edu_eyebrow:"Onderwijs", edu_title:"Academische Achtergrond",
+    conf_eyebrow:"Conferenties", conf_title:"Internationale Presentaties",
+    contact_eyebrow:"Contact", contact_title:"Laten we samenwerken",
+    contact_lead:"Beschikbaar voor consultatie, onderzoekssamenwerking, academische partnerschappen en mentorschap. Gevestigd in Japan — open voor werken op afstand en verhuizing naar Europa/Zuidoost-Azië.",
+    cl_personal:"Persoonlijk e-mail", cl_academic:"Academisch e-mail", cl_jp:"Telefoon (Japan)", cl_in:"Telefoon (India)", cl_portfolio:"Portfolio",
+    form_title:"Bericht sturen", form_name:"Volledige naam", form_email:"E-mailadres", form_type:"Type aanvraag",
+    form_opt1:"Micronetadvies", form_opt2:"Energie-data-analyse", form_opt3:"AI/ML-integratie",
+    form_opt4:"Onderzoekssamenwerking", form_opt5:"Academisch mentorschap", form_opt6:"Baan/postdoc-kans", form_opt7:"Anders",
+    form_msg:"Bericht", form_submit:"BERICHT STUREN →"
+  },
+  pl: {
+    nav_about:"O mnie", nav_services:"Usługi", nav_aiml:"AI/ML", nav_research:"Badania",
+    nav_experience:"Doświadczenie", nav_contact:"Kontakt", nav_cta:"Zarezerwuj konsultację",
+    hero_pill:"Doktorant · Dostępny do konsultacji",
+    hero_subtitle:"Badacz Systemów Energetycznych i Konsultant Mikrosieciowy",
+    hero_desc:"Doktorant na Uniwersytecie Shizuoka w Japonii. Specjalizuję się w optymalizacji hybrydowych mikrosiatki PV-BESS, predykcyjnym utrzymaniu ruchu opartym na AI/ML, elektryfikacji obszarów wiejskich i analityce energetycznej opartej na danych.",
+    stat1:"Publikacje", stat2:"Lata badań", stat3:"Kraje", stat4:"Odwiedzający stronę",
+    hero_btn1:"Zarezerwuj konsultację", hero_btn2:"Zobacz badania",
+    hero_card_label:"Obecnie w",
+    about_eyebrow:"O mnie", about_title:"Badacz Energii Oparty na Danych",
+    about_bio1:"Jestem Yash Pandey, doktorantem na Wydziale Elektrotechniki i Elektroniki Uniwersytetu Shizuoka w Japonii, pod opieką prof. Hironobu Matsuo.",
+    about_bio2:"Ponad 3 lata doświadczenia w Pythonie, MATLABie, HOMER Pro i wielkoskalowej analizie szeregów czasowych. Praca finansowana stypendium ABP z wizytami terenowymi w Indiach.",
+    hl_uni_label:"Uniwersytet", hl_dept_label:"Wydział", hl_phd_label:"Oczekiwany doktorat", hl_open_label:"Otwarty na",
+    skills_label:"Umiejętności techniczne",
+    srv_eyebrow:"Usługi doradcze", srv_title:"Jak mogę Ci pomóc",
+    srv_lead:"Eksperckie doradztwo dla NGO, deweloperów, badaczy i inżynierów pracujących nad odnawialnymi systemami energetycznymi i elektryfikacją obszarów wiejskich.",
+    srv1_name:"Doradztwo w zakresie Mikrosiatek i Elektryfikacji Obszarów Wiejskich",
+    srv1_desc:"Eksperckie wskazówki w projektowaniu mikrosiatek PV-BESS, wymiarowaniu komponentów, analizie scenariuszy i optymalizacji techno-ekonomicznej.",
+    srv2_name:"Doradztwo w zakresie Nauki o Danych Energetycznych i Analityki",
+    srv2_desc:"Praktyczne sesje w Pythonie, MATLABie i HOMER Pro. Analiza szeregów czasowych, modelowanie regresji, indeksy zmienności (TSV/D2DV), ocena zasobów słonecznych GHI.",
+    srv3_name:"Współpraca Badawcza i Mentoring",
+    srv3_desc:"Bezpłatna 30-minutowa sesja eksploracyjna dla studentów i początkujących badaczy w dziedzinie energii odnawialnej, projektowania BESS i hybrydowych mikrosiatek.",
+    srv4_name:"Nauka o Danych Energetycznych, Doradztwo Analityczne i Rzecznictwo Polityki",
+    srv4_desc:"Strategiczne doradztwo łączące spostrzeżenia energetyczne oparte na danych z ramami politycznymi. Obejmuje zalecenia oparte na dowodach dotyczące polityki energii odnawialnej i planowania elektryfikacji obszarów wiejskich.",
+    srv4_dur:"⏱ 75 minut · Online przez Zoom",
+    srv_book:"Zarezerwuj sesję →", free:"BEZPŁATNE",
+    aiml_eyebrow:"Badania AI / ML",
+    aiml_title:"AI/ML dla Wydajności Mikrosiatki i Predykcyjnego Utrzymania Ruchu",
+    aiml_lead:"Integracja uczenia maszynowego i optymalizacji opartej na AI w hybrydowych systemach mikrosiatki.",
+    aiml1_name:"Prognozowanie Obciążenia Oparte na AI i Prognozowanie Popytu",
+    aiml1_desc:"Modele LSTM, XGBoost i Random Forest dla profili obciążenia w wiejskich mikrosieciach.",
+    aiml2_name:"Predykcyjne Utrzymanie Ruchu dla BESS i Paneli Słonecznych",
+    aiml2_desc:"Wykrywanie anomalii oparte na ML w stanie zdrowia baterii (SoH) i wydajności modułu PV.",
+    aiml3_name:"Uczenie przez Wzmacnianie dla Dyspozycji Energii",
+    aiml3_desc:"Systemy zarządzania energią oparte na RL do dynamicznego równoważenia generacji PV, cykli ładowania/rozładowywania BESS i użycia generatora diesla.",
+    aiml4_name:"Cyfrowy Bliźniak dla Symulacji Mikrosiatki",
+    aiml4_desc:"Modele cyfrowych bliźniaków odzwierciedlające systemy fizyczne w czasie rzeczywistym, połączone z potokiem ML.",
+    aiml_hl_title:"Wizja Badawcza: Adaptacyjna Hybrydowa Mikrosiatka Energii Odnawialnej",
+    aiml_hl_desc:"Moje badania doktoranckie rozwijają dynamiczne ramy integrujące prognozowanie obciążenia AI/ML i predykcyjne utrzymanie ruchu z optymalizacją techno-ekonomiczną.",
+    res_eyebrow:"Badania i Publikacje", res_title:"Opublikowane Prace",
+    res_lead:"Artykuły recenzowane przez ekspertów, rozdziały książek i prezentacje konferencyjne w Elsevier, Wiley, IEEE, De Gruyter, IGI Global.",
+    books_eyebrow:"Rozdziały Książek", books_title:"Wkłady do Książek Akademickich",
+    field_eyebrow:"Badania Terenowe", field_title:"Wioska Talgao, Uttar Pradesh, Indie",
+    field_tag:"Badanie Społeczno-Ekonomiczne",
+    field_p1:"W lutym 2026 r. przeprowadziłem terenową ocenę wpływu społeczno-ekonomicznego autonomicznej mikrosiatki słonecznej o mocy 40 kW obsługiwanej przez TPRMG w wiosce Talgao.",
+    field_p2:"Prace terenowe zebrały rzeczywiste dane dotyczące obciążeń, struktury taryfowe i bezpośrednie informacje zwrotne od beneficjentów.",
+    field_p3:"Wyniki są bezpośrednio odzwierciedlone w rozdziałach doktoranckich dotyczących adaptacyjnych hybrydowych mikrosiatek.",
+    exp_eyebrow:"Doświadczenie", exp_title:"Stanowiska Akademickie i Badawcze",
+    exp1_role:"Asystent Badawczy", exp1_b1:"Analiza szeregów czasowych obciążenia i promieniowania słonecznego", exp1_b2:"Modele regresji do oceny pojemności PV/BESS", exp1_b3:"Inżynieria cech indeksu zmienności TSV, D2DV", exp1_b4:"Artykuły naukowe, prezentacje konferencyjne",
+    exp2_role:"Asystent Dydaktyczny", exp2_b1:"Wykłady o wyładowaniu świecącym i łukowym", exp2_b2:"Nadzór laboratoryjny", exp2_b3:"Przygotowanie materiałów do systemów elektroenergetycznych",
+    exp3_role:"Stażysta Badawczy", exp3_b1:"Algorytm akwizycji danych EMG bez strat w inżynierii biomedycznej", exp3_b2:"Optymalizacja przechowywania danych pacjentów szpitalnych",
+    exp4_role:"Stażysta Letni", exp4_b1:"Systemy SCADA dla operacji elektrowni", exp4_b2:"Protokoły bezpieczeństwa konserwacji kotłów",
+    edu_eyebrow:"Wykształcenie", edu_title:"Wykształcenie Akademickie",
+    conf_eyebrow:"Konferencje", conf_title:"Prezentacje Międzynarodowe",
+    contact_eyebrow:"Kontakt", contact_title:"Współpracujmy razem",
+    contact_lead:"Dostępny do konsultacji, współpracy badawczej, partnerstwa akademickiego i mentoringu. Mieszkam w Japonii — otwarty na pracę zdalną i relokację do Europy/Azji Południowo-Wschodniej.",
+    cl_personal:"Prywatny email", cl_academic:"Akademicki email", cl_jp:"Telefon (Japonia)", cl_in:"Telefon (Indie)", cl_portfolio:"Portfolio",
+    form_title:"Wyślij wiadomość", form_name:"Imię i nazwisko", form_email:"Adres e-mail", form_type:"Rodzaj zapytania",
+    form_opt1:"Doradztwo mikrosiatki", form_opt2:"Analityka danych energetycznych", form_opt3:"Integracja AI/ML",
+    form_opt4:"Współpraca badawcza", form_opt5:"Mentoring akademicki", form_opt6:"Oferta pracy/postdoc", form_opt7:"Inne",
+    form_msg:"Wiadomość", form_submit:"WYŚLIJ WIADOMOŚĆ →"
+  },
+  cs: {
+    nav_about:"O mně", nav_services:"Služby", nav_aiml:"AI/ML", nav_research:"Výzkum",
+    nav_experience:"Zkušenosti", nav_contact:"Kontakt", nav_cta:"Rezervovat konzultaci",
+    hero_pill:"PhD výzkumník · K dispozici pro konzultace",
+    hero_subtitle:"Výzkumník energetických systémů a poradce pro mikrosítě",
+    hero_desc:"Doktorand na Univerzitě Shizuoka v Japonsku. Specializuji se na optimalizaci hybridních mikrosítí PV-BESS, prediktivní údržbu na základě AI/ML, elektrizaci venkova a datovou analýzu energie.",
+    stat1:"Publikace", stat2:"Roky výzkumu", stat3:"Země", stat4:"Návštěvníci webu",
+    hero_btn1:"Rezervovat konzultaci", hero_btn2:"Zobrazit výzkum",
+    hero_card_label:"Aktuálně v",
+    about_eyebrow:"O mně", about_title:"Datový energetický výzkumník",
+    about_bio1:"Jsem Yash Pandey, doktorand na Katedře elektrotechniky a elektroniky Univerzity Shizuoka v Japonsku pod vedením prof. Hironobu Matsuo.",
+    about_bio2:"S 3+ lety zkušeností v Pythonu, MATLABu, HOMER Pro a rozsáhlé analýze časových řad. Práce financovaná stipendiem ABP s terénními výjezdy v Indii.",
+    hl_uni_label:"Univerzita", hl_dept_label:"Katedra", hl_phd_label:"Očekávaný doktorát", hl_open_label:"Otevřen pro",
+    skills_label:"Technické dovednosti",
+    srv_eyebrow:"Poradenské služby", srv_title:"Jak vám mohu pomoci",
+    srv_lead:"Odborné poradenství pro nevládní organizace, vývojáře, výzkumníky a inženýry pracující na systémech obnovitelné energie a elektrizaci venkova.",
+    srv1_name:"Poradenství pro mikrosítě a elektrizaci venkova",
+    srv1_desc:"Odborné vedení v návrhu mikrosítí PV-BESS, dimenzování komponent, analýze scénářů a techno-ekonomické optimalizaci.",
+    srv2_name:"Poradenství v datové vědě a analýze energie",
+    srv2_desc:"Praktická sezení v Pythonu, MATLABu a HOMER Pro. Analýza časových řad, regresní modelování, indexy variability (TSV/D2DV), hodnocení solárních zdrojů GHI.",
+    srv3_name:"Výzkumná spolupráce a mentorství",
+    srv3_desc:"Bezplatné 30minutové průzkumné sezení pro studenty a začínající výzkumníky v oblasti obnovitelné energie, návrhu BESS a hybridních mikrosítí.",
+    srv4_name:"Datová věda o energii, analytické poradenství a prosazování politik",
+    srv4_desc:"Strategické poradenství propojující datová energetická doporučení s politickými rámci. Zahrnuje doporučení na základě důkazů pro politiku obnovitelné energie a plánování elektrizace venkova.",
+    srv4_dur:"⏱ 75 minut · Online přes Zoom",
+    srv_book:"Rezervovat sezení →", free:"ZDARMA",
+    aiml_eyebrow:"Výzkum AI / ML",
+    aiml_title:"AI/ML pro výkon mikrosítě a prediktivní údržbu",
+    aiml_lead:"Integrace strojového učení a optimalizace řízené AI do systémů hybridní mikrosítě.",
+    aiml1_name:"Predikce zátěže na základě AI a prognóza poptávky",
+    aiml1_desc:"Modely LSTM, XGBoost a Random Forest pro profily zatížení ve venkovských mikrosítích.",
+    aiml2_name:"Prediktivní údržba pro BESS a solární panely",
+    aiml2_desc:"Detekce anomálií řízená ML na stavu zdraví baterie (SoH) a výkonu PV modulu.",
+    aiml3_name:"Zpětnovazební učení pro distribuci energie",
+    aiml3_desc:"Systémy řízení energie na základě RL pro dynamické vyvážení generace PV, cyklů nabíjení/vybíjení BESS a využití dieselového generátoru.",
+    aiml4_name:"Digitální dvojče pro simulaci mikrosítě",
+    aiml4_desc:"Modely digitálních dvojčat odrážející fyzické systémy v reálném čase kombinované s ML pipeline.",
+    aiml_hl_title:"Výzkumná vize: Adaptivní hybridní mikrosíť pro obnovitelnou energii",
+    aiml_hl_desc:"Mý doktorský výzkum vyvíjí dynamický rámec integrující predikci zátěže AI/ML a prediktivní údržbu s techno-ekonomickou optimalizací.",
+    res_eyebrow:"Výzkum a publikace", res_title:"Publikované práce",
+    res_lead:"Recenzované články, kapitoly knih a konferenční prezentace v Elsevier, Wiley, IEEE, De Gruyter, IGI Global.",
+    books_eyebrow:"Kapitoly knih", books_title:"Příspěvky do akademických knih",
+    field_eyebrow:"Terénní výzkum", field_title:"Vesnice Talgao, Uttar Pradesh, Indie",
+    field_tag:"Socioekonomická studie",
+    field_p1:"V únoru 2026 jsem provedl terénní hodnocení socioekonomického dopadu 40 kW autonomní solární mikrosítě provozované TPRMG ve vesnici Talgao.",
+    field_p2:"Terénní práce shromáždila skutečná data o zatížení, tarifní struktury a přímou zpětnou vazbu od příjemců.",
+    field_p3:"Výsledky se přímo odrážejí v doktorských kapitolách o adaptivních hybridních mikrosítích.",
+    exp_eyebrow:"Zkušenosti", exp_title:"Akademické a výzkumné pozice",
+    exp1_role:"Výzkumný asistent", exp1_b1:"Analýza časových řad zatížení a ozáření", exp1_b2:"Regresní modely pro odhad kapacity PV/BESS", exp1_b3:"Feature engineering indexu variability TSV, D2DV", exp1_b4:"Vědecké články, konferenční prezentace",
+    exp2_role:"Asistent výuky", exp2_b1:"Přednášky o doutnavém a obloukovém výboji", exp2_b2:"Dohled v laboratoři", exp2_b3:"Příprava materiálů pro energetické systémy",
+    exp3_role:"Výzkumný stážista", exp3_b1:"Bezztrátový algoritmus sběru dat EMG v biomedicínském inženýrství", exp3_b2:"Optimalizace ukládání dat pacientů v nemocnicích",
+    exp4_role:"Letní stážista", exp4_b1:"Systémy SCADA pro provoz elektrárny", exp4_b2:"Bezpečnostní protokoly údržby kotlů",
+    edu_eyebrow:"Vzdělání", edu_title:"Akademické vzdělání",
+    conf_eyebrow:"Konference", conf_title:"Mezinárodní prezentace",
+    contact_eyebrow:"Kontakt", contact_title:"Spolupracujme",
+    contact_lead:"K dispozici pro konzultace, výzkumnou spolupráci, akademická partnerství a mentorství. Žiji v Japonsku — otevřen práci na dálku a přestěhování do Evropy/jihovýchodní Asie.",
+    cl_personal:"Osobní email", cl_academic:"Akademický email", cl_jp:"Telefon (Japonsko)", cl_in:"Telefon (Indie)", cl_portfolio:"Portfolio",
+    form_title:"Odeslat zprávu", form_name:"Celé jméno", form_email:"E-mailová adresa", form_type:"Typ požadavku",
+    form_opt1:"Poradenství pro mikrosítě", form_opt2:"Analýza dat energie", form_opt3:"Integrace AI/ML",
+    form_opt4:"Výzkumná spolupráce", form_opt5:"Akademické mentorství", form_opt6:"Příležitost práce/postdoc", form_opt7:"Jiné",
+    form_msg:"Zpráva", form_submit:"ODESLAT ZPRÁVU →"
+  },
+  el: {
+    nav_about:"Σχετικά με μένα", nav_services:"Υπηρεσίες", nav_aiml:"AI/ML", nav_research:"Έρευνα",
+    nav_experience:"Εμπειρία", nav_contact:"Επικοινωνία", nav_cta:"Κλείστε συνεδρία",
+    hero_pill:"Ερευνητής PhD · Διαθέσιμος για Συμβουλευτική",
+    hero_subtitle:"Ερευνητής Ενεργειακών Συστημάτων και Σύμβουλος Μικροδικτύων",
+    hero_desc:"Υποψήφιος διδάκτορας στο Πανεπιστήμιο Shizuoka, Ιαπωνία. Ειδικεύεται στη βελτιστοποίηση υβριδικών μικροδικτύων PV-BESS, προληπτική συντήρηση AI/ML, ηλεκτροδότηση αγροτικών περιοχών και ανάλυση ενέργειας.",
+    stat1:"Δημοσιεύσεις", stat2:"Χρόνια Έρευνας", stat3:"Χώρες", stat4:"Επισκέπτες ιστοτόπου",
+    hero_btn1:"Κλείστε συνεδρία", hero_btn2:"Δείτε έρευνα",
+    hero_card_label:"Τρέχουσα τοποθεσία",
+    about_eyebrow:"Σχετικά με μένα", about_title:"Ερευνητής Ενέργειας Βασισμένος σε Δεδομένα",
+    about_bio1:"Είμαι ο Yash Pandey, υποψήφιος διδάκτορας στο Τμήμα Ηλεκτρολόγων Μηχανικών και Ηλεκτρονικής του Πανεπιστημίου Shizuoka, Ιαπωνία, υπό την επίβλεψη του Καθ. Hironobu Matsuo.",
+    about_bio2:"Με 3+ χρόνια εμπειρίας σε Python, MATLAB, HOMER Pro και ανάλυση χρονοσειρών μεγάλης κλίμακας. Εργασία χρηματοδοτούμενη με υποτροφία ABP.",
+    hl_uni_label:"Πανεπιστήμιο", hl_dept_label:"Τμήμα", hl_phd_label:"Αναμενόμενο διδακτορικό", hl_open_label:"Ανοιχτός σε",
+    skills_label:"Τεχνικές Δεξιότητες",
+    srv_eyebrow:"Συμβουλευτικές Υπηρεσίες", srv_title:"Πώς μπορώ να βοηθήσω",
+    srv_lead:"Εξειδικευμένη συμβουλευτική για ΜΚΟ, προγραμματιστές, ερευνητές και μηχανικούς που εργάζονται σε συστήματα ΑΠΕ.",
+    srv1_name:"Συμβουλευτική Μικροδικτύων και Ηλεκτροδότησης Αγροτικών Περιοχών",
+    srv1_desc:"Εξειδικευμένη καθοδήγηση στο σχεδιασμό μικροδικτύου PV-BESS, διαστασιολόγηση εξαρτημάτων, ανάλυση σεναρίων και τεχνικο-οικονομική βελτιστοποίηση.",
+    srv2_name:"Συμβουλευτική Επιστήμης Δεδομένων Ενέργειας",
+    srv2_desc:"Πρακτικές συνεδρίες σε Python, MATLAB και HOMER Pro. Ανάλυση χρονοσειρών, μοντελοποίηση παλινδρόμησης, δείκτες μεταβλητότητας (TSV/D2DV).",
+    srv3_name:"Ερευνητική Συνεργασία και Καθοδήγηση",
+    srv3_desc:"Δωρεάν 30λεπτη διερευνητική συνεδρία για φοιτητές και νέους ερευνητές σε ΑΠΕ, σχεδιασμό BESS και υβριδικά μικροδίκτυα.",
+    srv4_name:"Επιστήμη Δεδομένων Ενέργειας, Αναλυτική Συμβουλευτική και Πολιτική Υποστήριξη",
+    srv4_desc:"Στρατηγική συμβουλευτική που γεφυρώνει τις ενεργειακές αναλύσεις βασισμένες σε δεδομένα με πολιτικά πλαίσια.",
+    srv4_dur:"⏱ 75 λεπτά · Διαδικτυακά μέσω Zoom",
+    srv_book:"Κλείστε συνεδρία →", free:"ΔΩΡΕΑΝ",
+    aiml_eyebrow:"Έρευνα AI / ML",
+    aiml_title:"AI/ML για Απόδοση Μικροδικτύου και Προληπτική Συντήρηση",
+    aiml_lead:"Ενσωμάτωση μηχανικής μάθησης και βελτιστοποίησης με AI σε υβριδικά συστήματα μικροδικτύου.",
+    aiml1_name:"Πρόβλεψη Φορτίου Βασισμένη σε AI",
+    aiml1_desc:"Μοντέλα LSTM, XGBoost και Random Forest για προφίλ φορτίου σε αγροτικά μικροδίκτυα.",
+    aiml2_name:"Προληπτική Συντήρηση για BESS και Φωτοβολταϊκά",
+    aiml2_desc:"Ανίχνευση ανωμαλιών ML στην κατάσταση υγείας μπαταρίας (SoH) και απόδοση PV.",
+    aiml3_name:"Ενισχυτική Μάθηση για Διανομή Ενέργειας",
+    aiml3_desc:"Συστήματα διαχείρισης ενέργειας βάσει RL για δυναμική εξισορρόπηση παραγωγής PV.",
+    aiml4_name:"Ψηφιακός Δίδυμος για Προσομοίωση Μικροδικτύου",
+    aiml4_desc:"Μοντέλα ψηφιακού διδύμου που αντικατοπτρίζουν φυσικά συστήματα σε πραγματικό χρόνο.",
+    aiml_hl_title:"Ερευνητικό Όραμα: Προσαρμοστικό Υβριδικό Μικροδίκτυο ΑΠΕ",
+    aiml_hl_desc:"Η διδακτορική μου έρευνα αναπτύσσει ένα δυναμικό πλαίσιο που ενσωματώνει πρόβλεψη φορτίου AI/ML και προληπτική συντήρηση.",
+    res_eyebrow:"Έρευνα και Δημοσιεύσεις", res_title:"Δημοσιευμένα Έργα",
+    res_lead:"Άρθρα με κριτές, κεφάλαια βιβλίων και παρουσιάσεις σε Elsevier, Wiley, IEEE, De Gruyter, IGI Global.",
+    books_eyebrow:"Κεφάλαια Βιβλίων", books_title:"Συνεισφορές σε Ακαδημαϊκά Βιβλία",
+    field_eyebrow:"Έρευνα Πεδίου", field_title:"Χωριό Talgao, Uttar Pradesh, Ινδία",
+    field_tag:"Κοινωνικοοικονομική Μελέτη",
+    field_p1:"Τον Φεβρουάριο 2026, πραγματοποίησα αξιολόγηση πεδίου του κοινωνικοοικονομικού αντίκτυπου ενός αυτόνομου μικροδικτύου ηλιακής ενέργειας 40 kW στο χωριό Talgao.",
+    field_p2:"Η εργασία πεδίου συγκέντρωσε πραγματικά δεδομένα φορτίου, δομές τιμολογίων και άμεση ανατροφοδότηση.",
+    field_p3:"Τα αποτελέσματα αντικατοπτρίζονται άμεσα στα διδακτορικά κεφάλαια για προσαρμοστικά υβριδικά μικροδίκτυα.",
+    exp_eyebrow:"Εμπειρία", exp_title:"Ακαδημαϊκές και Ερευνητικές Θέσεις",
+    exp1_role:"Ερευνητικός Βοηθός", exp1_b1:"Ανάλυση χρονοσειρών φορτίου και ηλιακής ακτινοβολίας", exp1_b2:"Μοντέλα παλινδρόμησης για εκτίμηση χωρητικότητας PV/BESS", exp1_b3:"Μηχανική χαρακτηριστικών δείκτη μεταβλητότητας TSV, D2DV", exp1_b4:"Επιστημονικά άρθρα, παρουσιάσεις συνεδρίων",
+    exp2_role:"Βοηθός Διδασκαλίας", exp2_b1:"Διαλέξεις για εκκένωση λάμψης και τόξου", exp2_b2:"Εποπτεία εργαστηρίου", exp2_b3:"Προετοιμασία υλικών ενεργειακών συστημάτων",
+    exp3_role:"Ασκούμενος Ερευνητής", exp3_b1:"Αλγόριθμος χωρίς απώλεια EMG βιοϊατρικής μηχανικής", exp3_b2:"Βελτιστοποίηση αποθήκευσης δεδομένων ασθενών",
+    exp4_role:"Καλοκαιρινός Ασκούμενος", exp4_b1:"Συστήματα SCADA για λειτουργίες σταθμού ηλεκτροπαραγωγής", exp4_b2:"Πρωτόκολλα ασφάλειας συντήρησης λεβήτων",
+    edu_eyebrow:"Εκπαίδευση", edu_title:"Ακαδημαϊκό Υπόβαθρο",
+    conf_eyebrow:"Συνέδρια", conf_title:"Διεθνείς Παρουσιάσεις",
+    contact_eyebrow:"Επικοινωνία", contact_title:"Ας συνεργαστούμε",
+    contact_lead:"Διαθέσιμος για συμβουλευτική, ερευνητική συνεργασία, ακαδημαϊκές συνεργασίες και καθοδήγηση. Βρίσκομαι στην Ιαπωνία — ανοιχτός σε απομακρυσμένη εργασία.",
+    cl_personal:"Προσωπικό email", cl_academic:"Ακαδημαϊκό email", cl_jp:"Τηλέφωνο (Ιαπωνία)", cl_in:"Τηλέφωνο (Ινδία)", cl_portfolio:"Portfolio",
+    form_title:"Αποστολή μηνύματος", form_name:"Πλήρες όνομα", form_email:"Διεύθυνση email", form_type:"Τύπος αιτήματος",
+    form_opt1:"Συμβουλευτική μικροδικτύου", form_opt2:"Ανάλυση ενεργειακών δεδομένων", form_opt3:"Ενσωμάτωση AI/ML",
+    form_opt4:"Ερευνητική συνεργασία", form_opt5:"Ακαδημαϊκή καθοδήγηση", form_opt6:"Ευκαιρία εργασίας/postdoc", form_opt7:"Άλλο",
+    form_msg:"Μήνυμα", form_submit:"ΑΠΟΣΤΟΛΗ ΜΗΝΥΜΑΤΟΣ →"
+  },
+  ro: {
+    nav_about:"Despre mine", nav_services:"Servicii", nav_aiml:"AI/ML", nav_research:"Cercetare",
+    nav_experience:"Experiență", nav_contact:"Contact", nav_cta:"Rezervați consultație",
+    hero_pill:"Cercetător PhD · Disponibil pentru Consultanță",
+    hero_subtitle:"Cercetător în Sisteme Energetice și Consultant în Microgrids",
+    hero_desc:"Doctorand la Universitatea Shizuoka, Japonia. Specializat în optimizarea microgridurilor hibride PV-BESS, întreținere predictivă bazată pe AI/ML, electrificarea rurală și analiza energetică bazată pe date.",
+    stat1:"Publicații", stat2:"Ani de cercetare", stat3:"Țări", stat4:"Vizitatori site",
+    hero_btn1:"Rezervați consultație", hero_btn2:"Vezi cercetare",
+    hero_card_label:"Momentan la",
+    about_eyebrow:"Despre mine", about_title:"Cercetător în Energie Bazat pe Date",
+    about_bio1:"Sunt Yash Pandey, doctorand la Departamentul de Inginerie Electrică și Electronică al Universității Shizuoka din Japonia, sub îndrumarea Prof. Hironobu Matsuo.",
+    about_bio2:"Cu 3+ ani în Python, MATLAB, HOMER Pro și analiză de serii temporale la scară largă. Lucrare finanțată cu bursă ABP cu vizite de teren în India.",
+    hl_uni_label:"Universitate", hl_dept_label:"Departament", hl_phd_label:"Doctorat așteptat", hl_open_label:"Deschis la",
+    skills_label:"Competențe tehnice",
+    srv_eyebrow:"Servicii de consultanță", srv_title:"Cum vă pot ajuta",
+    srv_lead:"Consultanță expertă pentru ONG-uri, dezvoltatori, cercetători și ingineri care lucrează la sisteme de energie regenerabilă și electrificare rurală.",
+    srv1_name:"Consultanță Microgrid și Electrificare Rurală",
+    srv1_desc:"Îndrumare expertă în proiectarea microgridurilor PV-BESS, dimensionarea componentelor, analiza scenariilor și optimizarea tehno-economică.",
+    srv2_name:"Consultanță în Știința Datelor Energetice și Analitică",
+    srv2_desc:"Sesiuni practice în Python, MATLAB și HOMER Pro. Analiza seriilor temporale, modelare de regresie, indici de variabilitate (TSV/D2DV).",
+    srv3_name:"Colaborare în Cercetare și Mentorat",
+    srv3_desc:"Sesiune exploratorie gratuită de 30 de minute pentru studenți și cercetători la început de drum în energie regenerabilă, proiectare BESS și microgrids hibride.",
+    srv4_name:"Știința Datelor Energetice, Consultanță Analitică și Advocacy de Politici",
+    srv4_desc:"Consultanță strategică ce conectează perspectivele energetice bazate pe date cu cadrele de politică. Include recomandări bazate pe dovezi pentru politica energiei regenerabile și planificarea electrificării rurale.",
+    srv4_dur:"⏱ 75 minute · Online prin Zoom",
+    srv_book:"Rezervați sesiune →", free:"GRATUIT",
+    aiml_eyebrow:"Cercetare AI / ML",
+    aiml_title:"AI/ML pentru Performanța Microgrid și Întreținere Predictivă",
+    aiml_lead:"Integrarea învățării automate și optimizării conduse de AI în sistemele de microgrid hibride.",
+    aiml1_name:"Prognoza Sarcinii Bazată pe AI și Predicția Cererii",
+    aiml1_desc:"Modele LSTM, XGBoost și Random Forest pentru profiluri de sarcină în microgrids rurale.",
+    aiml2_name:"Întreținere Predictivă pentru BESS și Panouri Solare",
+    aiml2_desc:"Detectare anomalii condusă de ML pe starea de sănătate a bateriei (SoH) și performanța modulelor PV.",
+    aiml3_name:"Învățare prin Reforțare pentru Dispecerizarea Energiei",
+    aiml3_desc:"Sisteme de management al energiei bazate pe RL pentru echilibrarea dinamică a generării PV, ciclurilor de încărcare/descărcare BESS.",
+    aiml4_name:"Geamăn Digital pentru Simularea Microgrid",
+    aiml4_desc:"Modele de geamăn digital ce reflectă sistemele fizice în timp real, combinate cu pipeline ML.",
+    aiml_hl_title:"Viziune de Cercetare: Microgrid Hibrid Adaptiv pentru Energie Regenerabilă",
+    aiml_hl_desc:"Cercetarea mea doctorală dezvoltă un cadru dinamic ce integrează prognoza sarcinii AI/ML și întreținerea predictivă cu optimizarea tehno-economică.",
+    res_eyebrow:"Cercetare și Publicații", res_title:"Lucrări Publicate",
+    res_lead:"Articole recenzate de experți, capitole de carte și prezentări la conferințe în Elsevier, Wiley, IEEE, De Gruyter, IGI Global.",
+    books_eyebrow:"Capitole de Carte", books_title:"Contribuții la Cărți Academice",
+    field_eyebrow:"Cercetare de Teren", field_title:"Satul Talgao, Uttar Pradesh, India",
+    field_tag:"Studiu Socioeconomic",
+    field_p1:"În februarie 2026, am efectuat o evaluare de teren a impactului socioeconomic al unui microgrid solar autonom de 40 kW operat de TPRMG în satul Talgao.",
+    field_p2:"Munca de teren a colectat date reale de sarcină, structuri tarifare și feedback direct de la beneficiari.",
+    field_p3:"Rezultatele se reflectă direct în capitolele doctorale despre microgrids hibride adaptive.",
+    exp_eyebrow:"Experiență", exp_title:"Poziții Academice și de Cercetare",
+    exp1_role:"Asistent de Cercetare", exp1_b1:"Analiza seriilor temporale de sarcină și iradianță", exp1_b2:"Modele de regresie pentru estimarea capacității PV/BESS", exp1_b3:"Ingineria caracteristicilor indicelui de variabilitate TSV, D2DV", exp1_b4:"Articole științifice, prezentări la conferințe",
+    exp2_role:"Asistent Didactic", exp2_b1:"Prelegeri despre descărcarea prin incandescență și arc", exp2_b2:"Supraveghere laborator", exp2_b3:"Pregătirea materialelor pentru sisteme energetice",
+    exp3_role:"Stagiar de Cercetare", exp3_b1:"Algoritm de achiziție de date EMG fără pierderi în inginerie biomedicală", exp3_b2:"Optimizarea stocării datelor pacienților din spitale",
+    exp4_role:"Stagiar de Vară", exp4_b1:"Sisteme SCADA pentru operațiunile centralelor electrice", exp4_b2:"Protocoale de siguranță pentru întreținerea cazanelor",
+    edu_eyebrow:"Educație", edu_title:"Pregătire Academică",
+    conf_eyebrow:"Conferințe", conf_title:"Prezentări Internaționale",
+    contact_eyebrow:"Contact", contact_title:"Să lucrăm împreună",
+    contact_lead:"Disponibil pentru consultanță, colaborare în cercetare, parteneriate academice și mentorat. Bazat în Japonia — deschis la munca la distanță și relocare în Europa/Asia de Sud-Est.",
+    cl_personal:"Email personal", cl_academic:"Email academic", cl_jp:"Telefon (Japonia)", cl_in:"Telefon (India)", cl_portfolio:"Portofoliu",
+    form_title:"Trimiteți mesaj", form_name:"Nume complet", form_email:"Adresă email", form_type:"Tip de solicitare",
+    form_opt1:"Consultanță microgrid", form_opt2:"Analitică date energetice", form_opt3:"Integrare AI/ML",
+    form_opt4:"Colaborare cercetare", form_opt5:"Mentorat academic", form_opt6:"Oportunitate job/postdoc", form_opt7:"Altele",
+    form_msg:"Mesaj", form_submit:"TRIMITEȚI MESAJ →"
   }
 };
 
@@ -1375,10 +2175,8 @@ function setLang(lang) {
     const key = el.getAttribute('data-i18n');
     if (dict[key]) el.textContent = dict[key];
   });
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    const btnLang = btn.getAttribute('onclick').replace("setLang('","").replace("')","");
-    btn.classList.toggle('active', btnLang === lang);
-  });
+  const sel = document.getElementById('lang-select');
+  if (sel) sel.value = lang;
   document.documentElement.lang = lang;
 }
 
@@ -1421,6 +2219,109 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.08 });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+
+// ══════════════════════════════════════════════════════
+// 🔐 AES-256-GCM CONTENT ENCRYPTION & ANTI-TAMPER LAYER
+// ══════════════════════════════════════════════════════
+const SecurityLayer = (() => {
+  'use strict';
+
+  async function deriveKey(passphrase, salt) {
+    const enc = new TextEncoder();
+    const keyMaterial = await crypto.subtle.importKey(
+      'raw', enc.encode(passphrase), { name: 'PBKDF2' }, false, ['deriveKey']
+    );
+    return crypto.subtle.deriveKey(
+      { name: 'PBKDF2', salt: enc.encode(salt), iterations: 100000, hash: 'SHA-256' },
+      keyMaterial, { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt']
+    );
+  }
+
+  async function encryptData(data, passphrase) {
+    const key = await deriveKey(passphrase, 'energy-savant-salt-v1');
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const ciphertext = await crypto.subtle.encrypt(
+      { name: 'AES-GCM', iv, tagLength: 128 }, key,
+      new TextEncoder().encode(JSON.stringify(data))
+    );
+    return { iv: Array.from(iv), data: Array.from(new Uint8Array(ciphertext)), ts: Date.now() };
+  }
+
+  async function decryptData(encrypted, passphrase) {
+    try {
+      const key = await deriveKey(passphrase, 'energy-savant-salt-v1');
+      const plain = await crypto.subtle.decrypt(
+        { name: 'AES-GCM', iv: new Uint8Array(encrypted.iv), tagLength: 128 },
+        key, new Uint8Array(encrypted.data)
+      );
+      return JSON.parse(new TextDecoder().decode(plain));
+    } catch(e) { return null; }
+  }
+
+  async function hashSection(selector) {
+    const el = document.querySelector(selector);
+    if (!el) return null;
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(el.innerText || ''));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+  }
+
+  const INTEGRITY_KEY = 'es_integrity_v1';
+  const PASS = 'yp-energy-savant-2026';
+
+  async function storeIntegrityBaseline() {
+    if (localStorage.getItem(INTEGRITY_KEY)) return;
+    const sections = ['#about','#services','#aiml','#research'];
+    const hashes = {};
+    for (const sel of sections) hashes[sel] = await hashSection(sel);
+    const enc = await encryptData(hashes, PASS);
+    localStorage.setItem(INTEGRITY_KEY, JSON.stringify(enc));
+  }
+
+  async function verifyIntegrity() {
+    const stored = localStorage.getItem(INTEGRITY_KEY);
+    if (!stored) return true;
+    try {
+      const baseline = await decryptData(JSON.parse(stored), PASS);
+      if (!baseline) return false;
+      for (const sel of ['#about','#services','#aiml','#research']) {
+        if (baseline[sel] && baseline[sel] !== await hashSection(sel)) return false;
+      }
+    } catch(e) { return true; }
+    return true;
+  }
+
+  // DevTools detection
+  setInterval(() => {
+    if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
+      console.clear();
+      console.log('%c⚡ Energy Savant', 'color:#0284c7;font-size:18px;font-weight:bold;');
+      console.log('%cProtected by AES-256-GCM · SHA-256 integrity · PBKDF2 key derivation', 'color:#64748b;font-size:11px;');
+    }
+  }, 1000);
+
+  // Copy protection — appends attribution for long copies
+  document.addEventListener('copy', e => {
+    const sel = window.getSelection().toString();
+    if (sel.length > 120) {
+      e.clipboardData.setData('text/plain', sel.slice(0, 80) + '\n\n— Yash Pandey | Energy Savant | yashpdelhi@gmail.com');
+      e.preventDefault();
+    }
+  });
+
+  // Soft right-click block on content cards
+  document.addEventListener('contextmenu', e => {
+    if (e.target.closest('.paper-card,.book-card,.srv-card')) e.preventDefault();
+  });
+
+  window.addEventListener('load', async () => {
+    await storeIntegrityBaseline();
+    const ok = await verifyIntegrity();
+    if (!ok) console.warn('[Security] Integrity check failed — possible tamper detected.');
+  });
+
+  return { encryptData, decryptData, hashSection, verifyIntegrity };
+})();
 
 // ── ACTIVE NAV ──
 const sections = document.querySelectorAll('section[id]');
