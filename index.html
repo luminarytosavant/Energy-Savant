@@ -305,6 +305,17 @@
   .price-cents { font-size:0.82rem; font-weight:600; vertical-align:super; line-height:0; color:var(--teal); }
   .price-per { font-size:0.75rem; color:var(--muted); font-weight:500; }
   .srv-dur { font-size:0.76rem; color:var(--muted2); margin-bottom:1.2rem; }
+  /* Reference cards */
+  .ref-card { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:1.25rem; padding:1.5rem; position:relative; transition:all 0.25s; }
+  .ref-card:hover { background:rgba(255,255,255,0.1); border-color:rgba(125,211,252,0.35); transform:translateY(-4px); box-shadow:0 12px 35px rgba(0,0,0,0.3); }
+  .ref-avatar { width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Poppins',sans-serif; font-weight:800; font-size:0.95rem; color:#fff; margin-bottom:0.75rem; box-shadow:0 4px 12px rgba(0,0,0,0.3); }
+  .ref-flag { position:absolute; top:1.2rem; right:1.2rem; font-size:1.3rem; }
+  .ref-name { font-family:'Poppins',sans-serif; font-weight:700; font-size:0.95rem; color:#f0f9ff; margin-bottom:0.2rem; line-height:1.3; }
+  .ref-title { font-size:0.76rem; color:#7dd3fc; font-weight:600; margin-bottom:0.5rem; font-family:'Source Code Pro',monospace; letter-spacing:0.03em; }
+  .ref-inst { font-size:0.78rem; color:rgba(255,255,255,0.5); line-height:1.5; margin-bottom:0.75rem; }
+  .ref-email { font-size:0.75rem; color:#38bdf8; text-decoration:none; word-break:break-all; transition:color 0.2s; }
+  .ref-email:hover { color:#7dd3fc; text-decoration:underline; }
+
   .pay-btns { display:flex; flex-direction:column; gap:0.5rem; margin:0.75rem 0 0.5rem; }
   .pay-btn { border:none; border-radius:0.6rem; padding:0.6rem 1rem; font-size:0.82rem; font-weight:600; cursor:pointer; transition:all 0.2s; text-align:center; font-family:'Poppins',sans-serif; }
   .pay-rzp { background:linear-gradient(135deg,#00baf2,#0070f3); color:#fff; }
@@ -711,7 +722,7 @@
         <div class="srv-price">$<span class="price-main">99</span><span class="price-cents">.90</span> <span class="price-per">/ session</span></div>
         <div class="srv-dur">⏱ 60 minutes · Online via Zoom</div>
         <div class="pay-btns">
-          <button class="pay-btn pay-rzp" onclick="openRazorpay('Microgrid Consulting', 9990, 'INR')">🇮🇳 Pay via UPI / Google Pay</button>
+          <button class="pay-btn pay-rzp" onclick="openRazorpay('Microgrid Consulting – 60 min', 99.90)">🇮🇳 Pay via UPI / Google Pay</button>
           <button class="pay-btn pay-stripe" onclick="openStripe('price_microgrid')">💳 Pay via Card (Intl.)</button>
         </div>
         <a href="#contact" class="srv-link" data-i18n="srv_book">Book Free Discovery Call →</a>
@@ -723,7 +734,7 @@
         <div class="srv-price">$<span class="price-main">79</span><span class="price-cents">.90</span> <span class="price-per">/ session</span></div>
         <div class="srv-dur">⏱ 60 minutes · Online via Zoom</div>
         <div class="pay-btns">
-          <button class="pay-btn pay-rzp" onclick="openRazorpay('Energy Data Science Advisory', 7990, 'INR')">🇮🇳 Pay via UPI / Google Pay</button>
+          <button class="pay-btn pay-rzp" onclick="openRazorpay('Energy Data Science Advisory – 60 min', 79.90)">🇮🇳 Pay via UPI / Google Pay</button>
           <button class="pay-btn pay-stripe" onclick="openStripe('price_datascience')">💳 Pay via Card (Intl.)</button>
         </div>
         <a href="#contact" class="srv-link" data-i18n="srv_book">Book Free Discovery Call →</a>
@@ -743,7 +754,7 @@
         <div class="srv-price">$<span class="price-main">119</span><span class="price-cents">.90</span> <span class="price-per">/ session</span></div>
         <div class="srv-dur" data-i18n="srv4_dur">⏱ 75 minutes · Online via Zoom</div>
         <div class="pay-btns">
-          <button class="pay-btn pay-rzp" onclick="openRazorpay('Policy Advisory Session', 11990, 'INR')">🇮🇳 Pay via UPI / Google Pay</button>
+          <button class="pay-btn pay-rzp" onclick="openRazorpay('Energy Policy Advisory Session – 75 min', 119.90)">🇮🇳 Pay via UPI / Google Pay</button>
           <button class="pay-btn pay-stripe" onclick="openStripe('price_policy')">💳 Pay via Card (Intl.)</button>
         </div>
         <a href="#contact" class="srv-link" data-i18n="srv_book">Book Free Discovery Call →</a>
@@ -1061,7 +1072,7 @@
     <div class="section-eyebrow fade-up" style="color:rgba(255,255,255,0.55);">Secure Payments</div>
     <h2 class="section-title fade-up" style="color:#fff; margin-bottom:0.5rem;">Pay for Your Session</h2>
     <p class="fade-up" style="color:rgba(255,255,255,0.7); max-width:560px; margin:0 auto 3rem; text-align:center; font-size:0.95rem;">
-      Pay via UPI / Google Pay (India) or Stripe / Wise (International). After payment, email your receipt to <strong style="color:#7dd3fc;">yashpdelhi@gmail.com</strong> and I'll confirm your booking within 24 hours.
+      Pay via UPI / Google Pay (India) or Stripe / Wise (International). After payment, email your receipt to <strong style="color:#7dd3fc;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b0c9d1c3d8c0d4d5dcd8d9f0d7ddd1d9dc9ed3dfdd">[email&#160;protected]</a></strong> and I'll confirm your booking within 24 hours.
     </p>
 
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; max-width:860px; margin:0 auto;" class="fade-up payment-grid">
@@ -1225,24 +1236,119 @@
 
 
 <!-- REFERENCES -->
-<section id="references" class="section-sky">
+<!-- GLOBAL NETWORK BANNER -->
+<div style="position:relative; height:280px; overflow:hidden; background:linear-gradient(135deg,#0c4a6e,#164e63,#1e3a5f);">
+  <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1400&q=80" alt="Global network" style="width:100%; height:100%; object-fit:cover; opacity:0.25; mix-blend-mode:luminosity;">
+  <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:1rem;">
+    <div style="font-family:'Source Code Pro',monospace; font-size:0.72rem; letter-spacing:0.18em; color:rgba(125,211,252,0.8); margin-bottom:0.75rem;">GLOBAL ACADEMIC NETWORK</div>
+    <h2 style="font-family:'Poppins',sans-serif; font-size:clamp(1.4rem,3.5vw,2.2rem); font-weight:800; color:#fff; margin:0 0 0.75rem; line-height:1.2;">Research Collaborations Across<br><span style="color:#7dd3fc;">4 Countries · 9 Institutions</span></h2>
+    <div style="display:flex; gap:1.5rem; flex-wrap:wrap; justify-content:center; margin-top:0.5rem;">
+      <span style="background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.2); border-radius:2rem; padding:0.35rem 1rem; color:#e0f2fe; font-size:0.8rem;">🇯🇵 Japan</span>
+      <span style="background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.2); border-radius:2rem; padding:0.35rem 1rem; color:#e0f2fe; font-size:0.8rem;">🇮🇳 India</span>
+      <span style="background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.2); border-radius:2rem; padding:0.35rem 1rem; color:#e0f2fe; font-size:0.8rem;">🇹🇼 Taiwan</span>
+      <span style="background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.2); border-radius:2rem; padding:0.35rem 1rem; color:#e0f2fe; font-size:0.8rem;">🇸🇪 Sweden</span>
+    </div>
+  </div>
+</div>
+
+<!-- REFERENCES -->
+<section id="references" style="background:linear-gradient(180deg,#0f172a 0%,#0c4a6e 100%); padding:5rem 0;">
   <div class="container">
-    <div class="section-eyebrow fade-up">Academic &amp; Professional</div>
-    <h2 class="section-title fade-up">References</h2>
-    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:1.5rem; margin-top:2rem;" class="fade-up">
-      <div class="exp-card"><div class="exp-role">Prof. Hitoshi Haga</div><div class="exp-org">Dept. of Electrical &amp; Electronic Engineering, Shizuoka University, Hamamatsu, Japan</div><div style="font-size:0.8rem; color:var(--blue); margin-top:0.5rem;">haga.hitoshi@shizuoka.ac.jp</div></div>
-      <div class="exp-card"><div class="exp-role">Assoc. Prof. Hironobu Matsuo</div><div class="exp-org">Dept. of Electronics &amp; Electrical Engineering, Shizuoka University, Japan</div><div style="font-size:0.8rem; color:var(--blue); margin-top:0.5rem;">matsuo.hironobu@shizuoka.ac.jp</div></div>
-      <div class="exp-card"><div class="exp-role">Dr. Ashutosh Tiwari</div><div class="exp-org">Founder &amp; Chairman, International Association of Advanced Materials (IAAM), Ulrika, Sweden</div><div style="font-size:0.8rem; color:var(--blue); margin-top:0.5rem;">director@iaam.se</div></div>
-      <div class="exp-card"><div class="exp-role">Dr. Sushil Yadav Yamamoto</div><div class="exp-org">Registered Consultant, Ministry of Agriculture, Forest &amp; Fisheries (MAAF), Japan</div><div style="font-size:0.8rem; color:var(--blue); margin-top:0.5rem;">japandevelopment6@gmail.com</div></div>
-      <div class="exp-card"><div class="exp-role">Prof. Satyendra Patnaik</div><div class="exp-org">Advisor to Founder, KIIT &amp; KISS University, Bhubaneswar, India</div><div style="font-size:0.8rem; color:var(--blue); margin-top:0.5rem;">satyendrapatnaik@kiit.ac.in</div></div>
-      <div class="exp-card"><div class="exp-role">Prof. Byomkesh Nayak</div><div class="exp-org">Dean, School of Electrical Engineering, KIIT University, India</div><div style="font-size:0.8rem; color:var(--blue); margin-top:0.5rem;">dean.electrical@kiit.ac.in</div></div>
-      <div class="exp-card"><div class="exp-role">Prof. Dr. Jyoti Prakash Maity</div><div class="exp-org">Dept. of Earth &amp; Environmental Science, National Chung Cheng University &amp; KIIT University</div><div style="font-size:0.8rem; color:var(--blue); margin-top:0.5rem;">jyoti_maity@yahoo.com</div></div>
-      <div class="exp-card"><div class="exp-role">Dr. Congo Tak Shing Ching</div><div class="exp-org">Professor, Graduate Institute of Biomedical Engineering, National Chung Hsing University, Taiwan</div><div style="font-size:0.8rem; color:var(--blue); margin-top:0.5rem;">tsching@nchu.edu.tw</div></div>
-      <div class="exp-card"><div class="exp-role">Mr. Sanatan</div><div class="exp-org">Deputy Secretary, Ministry of Skill Development &amp; Entrepreneurship, Government of India</div></div>
+    <div class="section-eyebrow fade-up" style="color:rgba(125,211,252,0.7);">Academic &amp; Professional</div>
+    <h2 class="section-title fade-up" style="color:#fff;">References</h2>
+    <p class="fade-up" style="text-align:center; color:rgba(255,255,255,0.55); font-size:0.88rem; max-width:520px; margin:0 auto 3rem;">Available on request. Please contact via email with your inquiry and affiliation.</p>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:1.25rem;" class="fade-up">
+
+      <!-- Japan refs -->
+      <div class="ref-card">
+        <div class="ref-avatar" style="background:linear-gradient(135deg,#0284c7,#0ea5e9);">HH</div>
+        <div class="ref-flag">🇯🇵</div>
+        <div class="ref-name">Prof. Hitoshi Haga</div>
+        <div class="ref-title">Supervisor · Research Assistant</div>
+        <div class="ref-inst">Dept. of Electrical &amp; Electronic Engineering<br>Shizuoka University, Hamamatsu</div>
+        <a href="mailto:haga.hitoshi@shizuoka.ac.jp" class="ref-email">haga.hitoshi@shizuoka.ac.jp</a>
+      </div>
+
+      <div class="ref-card">
+        <div class="ref-avatar" style="background:linear-gradient(135deg,#0369a1,#0284c7);">HM</div>
+        <div class="ref-flag">🇯🇵</div>
+        <div class="ref-name">Assoc. Prof. Hironobu Matsuo</div>
+        <div class="ref-title">PhD Supervisor · Lab Director</div>
+        <div class="ref-inst">Dept. of Electronics &amp; Electrical Engineering<br>Shizuoka University, Hamamatsu</div>
+        <a href="mailto:matsuo.hironobu@shizuoka.ac.jp" class="ref-email">matsuo.hironobu@shizuoka.ac.jp</a>
+      </div>
+
+      <div class="ref-card">
+        <div class="ref-avatar" style="background:linear-gradient(135deg,#0369a1,#155e75);">SY</div>
+        <div class="ref-flag">🇯🇵</div>
+        <div class="ref-name">Dr. Sushil Yadav Yamamoto</div>
+        <div class="ref-title">Registered Consultant</div>
+        <div class="ref-inst">Ministry of Agriculture, Forest &amp; Fisheries (MAAF), Japan</div>
+        <a href="mailto:japandevelopment6@gmail.com" class="ref-email">japandevelopment6@gmail.com</a>
+      </div>
+
+      <!-- India refs -->
+      <div class="ref-card">
+        <div class="ref-avatar" style="background:linear-gradient(135deg,#d97706,#b45309);">SP</div>
+        <div class="ref-flag">🇮🇳</div>
+        <div class="ref-name">Prof. Satyendra Patnaik</div>
+        <div class="ref-title">Advisor to Founder</div>
+        <div class="ref-inst">KIIT &amp; KISS University, Bhubaneswar, India</div>
+        <a href="mailto:satyendrapatnaik@kiit.ac.in" class="ref-email">satyendrapatnaik@kiit.ac.in</a>
+      </div>
+
+      <div class="ref-card">
+        <div class="ref-avatar" style="background:linear-gradient(135deg,#b45309,#92400e);">BN</div>
+        <div class="ref-flag">🇮🇳</div>
+        <div class="ref-name">Prof. Byomkesh Nayak</div>
+        <div class="ref-title">Dean, School of Electrical Engineering</div>
+        <div class="ref-inst">KIIT University, Bhubaneswar, India</div>
+        <a href="mailto:dean.electrical@kiit.ac.in" class="ref-email">dean.electrical@kiit.ac.in</a>
+      </div>
+
+      <div class="ref-card">
+        <div class="ref-avatar" style="background:linear-gradient(135deg,#7c3aed,#6d28d9);">S</div>
+        <div class="ref-flag">🇮🇳</div>
+        <div class="ref-name">Mr. Sanatan</div>
+        <div class="ref-title">Deputy Secretary</div>
+        <div class="ref-inst">Ministry of Skill Development &amp; Entrepreneurship, Government of India</div>
+        <span class="ref-email" style="cursor:default;">Available on request</span>
+      </div>
+
+      <!-- Taiwan refs -->
+      <div class="ref-card">
+        <div class="ref-avatar" style="background:linear-gradient(135deg,#059669,#047857);">JM</div>
+        <div class="ref-flag">🇹🇼</div>
+        <div class="ref-name">Prof. Dr. Jyoti Prakash Maity</div>
+        <div class="ref-title">Earth &amp; Environmental Science</div>
+        <div class="ref-inst">National Chung Cheng University &amp; KIIT University</div>
+        <a href="mailto:jyoti_maity@yahoo.com" class="ref-email">jyoti_maity@yahoo.com</a>
+      </div>
+
+      <div class="ref-card">
+        <div class="ref-avatar" style="background:linear-gradient(135deg,#0d9488,#0f766e);">CC</div>
+        <div class="ref-flag">🇹🇼</div>
+        <div class="ref-name">Dr. Congo Tak Shing Ching</div>
+        <div class="ref-title">Professor, Biomedical Engineering</div>
+        <div class="ref-inst">National Chung Hsing University, Taiwan</div>
+        <a href="mailto:tsching@nchu.edu.tw" class="ref-email">tsching@nchu.edu.tw</a>
+      </div>
+
+      <!-- Sweden ref -->
+      <div class="ref-card">
+        <div class="ref-avatar" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);">AT</div>
+        <div class="ref-flag">🇸🇪</div>
+        <div class="ref-name">Dr. Ashutosh Tiwari</div>
+        <div class="ref-title">Founder &amp; Chairman, IAAM</div>
+        <div class="ref-inst">International Association of Advanced Materials, Ulrika, Sweden</div>
+        <a href="mailto:director@iaam.se" class="ref-email">director@iaam.se</a>
+      </div>
+
     </div>
   </div>
 </section>
-<div class="divider"></div>
+<div class="divider" style="background:linear-gradient(90deg,#0c4a6e,#0f172a);height:2px;"></div>
 
 
 <!-- HOBBIES -->
@@ -1303,14 +1409,14 @@
     <div class="upi-success" id="upiCopySuccess">✓ UPI ID copied to clipboard!</div>
 
     <div style="margin-top:1.2rem; padding:0.75rem; background:rgba(22,163,74,0.06); border:1px solid rgba(22,163,74,0.2); border-radius:0.6rem; font-size:0.76rem; color:#166534;">
-      💡 After payment, please email your payment screenshot to <strong>yashpdelhi@gmail.com</strong> with your preferred time slot. You'll receive a Zoom link within 24 hours.
+      💡 After payment, please email your payment screenshot to <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="423b23312a3226272e2a2b02252f232b2e6c212d2f">[email&#160;protected]</a></strong> with your preferred time slot. You'll receive a Zoom link within 24 hours.
     </div>
   </div>
 </div>
 
 <!-- PAYMENT SCRIPTS -->
 <!-- Replace YOUR_RAZORPAY_KEY_ID below with your actual key from Razorpay Dashboard → Settings → API Keys -->
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
 const RAZORPAY_KEY = 'YOUR_RAZORPAY_KEY_ID'; // ← REPLACE THIS after Razorpay KYC approval
 // Stripe payment links — replace with your actual Stripe Payment Link URLs
@@ -1325,31 +1431,60 @@ const UPI_ID   = 'yashpdelhi@oksbi';   // Primary — Google Pay · SBI
 const UPI_ID2  = 'yashpdelhi@okicici'; // Backup — ICICI
 const UPI_NAME = 'Yash Pandey';
 
-let _upiAmount = 0, _upiAmountRaw = 0, _upiService = '';
+// ── USD → INR live exchange rate (fetched once on load) ──
+let _usdToInr = 92.30; // fallback rate (March 2026); updated live below
+let _upiAmountINR = 0, _upiAmountUSD = 0, _upiService = '';
 
-function openRazorpay(serviceName, amountPaise, currency) {
-  // If Razorpay key not yet configured, fall back to UPI modal
+(async function fetchRate() {
+  // Try primary source first, then fallback to secondary
+  const sources = [
+    { url: 'https://open.er-api.com/v6/latest/USD', parse: d => d?.rates?.INR },
+    { url: 'https://api.frankfurter.app/latest?from=USD&to=INR', parse: d => d?.rates?.INR },
+  ];
+  for (const src of sources) {
+    try {
+      const r = await fetch(src.url);
+      const d = await r.json();
+      const rate = src.parse(d);
+      if (rate && rate > 70 && rate < 120) { // sanity check — INR is always in this range vs USD
+        _usdToInr = rate;
+        console.log('[Energy Savant] Live USD→INR rate:', _usdToInr.toFixed(2));
+        return;
+      }
+    } catch(e) { /* try next source */ }
+  }
+  console.log('[Energy Savant] Using fallback USD→INR rate:', _usdToInr);
+})();
+
+function openRazorpay(serviceName, amountUSD) {
+  const inr       = Math.round(amountUSD * _usdToInr);   // e.g. 99.90 × 84.5 ≈ ₹8,442
+  const paise     = inr * 100;                            // Razorpay needs smallest unit
+  const inrDisplay = inr.toLocaleString('en-IN');
+
+  _upiAmountINR = inr;
+  _upiAmountUSD = amountUSD;
+  _upiService   = serviceName;
+
+  // If Razorpay key not yet configured → fall back to UPI modal
   if (!RAZORPAY_KEY || RAZORPAY_KEY === 'YOUR_RAZORPAY_KEY_ID') {
-    _upiAmount = amountPaise;
-    _upiAmountRaw = (amountPaise / 100).toFixed(2);
-    _upiService = serviceName;
-    document.getElementById('upiModalTitle').textContent = 'Pay via UPI / Google Pay';
-    document.getElementById('upiModalAmount').textContent = '₹' + (amountPaise / 100).toLocaleString('en-IN');
+    document.getElementById('upiModalTitle').textContent   = 'Pay via UPI / Google Pay';
+    document.getElementById('upiModalAmount').textContent  = '₹' + inrDisplay + ' (≈ $' + amountUSD.toFixed(2) + ')';
     document.getElementById('upiModalService').textContent = serviceName;
     document.getElementById('upiCopySuccess').style.display = 'none';
     document.getElementById('upiModal').classList.add('open');
     return;
   }
+
   // Full Razorpay checkout (once KYC approved and key added)
   const options = {
     key: RAZORPAY_KEY,
-    amount: amountPaise,
-    currency: currency || 'INR',
+    amount: paise,
+    currency: 'INR',
     name: 'Energy Savant',
-    description: serviceName,
+    description: serviceName + ' — $' + amountUSD.toFixed(2) + ' (₹' + inrDisplay + ')',
     image: 'https://luminarytosavant.github.io/YASHPANDEY.github.io/favicon.ico',
     handler: function(response) {
-      alert('✅ Payment successful! Payment ID: ' + response.razorpay_payment_id + '\n\nPlease email your session details to yashpdelhi@gmail.com');
+      alert('✅ Payment successful!\nPayment ID: ' + response.razorpay_payment_id + '\n\nPlease email your session time preference to yashpdelhi@gmail.com');
     },
     prefill: { email: '', contact: '' },
     theme: { color: '#0284c7' },
@@ -1369,7 +1504,7 @@ function openStripe(priceId) {
 }
 
 function launchUpi(app) {
-  const amt = _upiAmountRaw;
+  const amt = _upiAmountINR.toFixed(2);
   const note = encodeURIComponent('Energy Savant - ' + _upiService);
   const name = encodeURIComponent(UPI_NAME);
   const upi  = encodeURIComponent(UPI_ID);
@@ -2853,36 +2988,4 @@ function copyUPI() {
 }
 function launchRazorpay() {
   const rzpKeyId = 'YOUR_KEY_ID';
-  if (rzpKeyId === 'YOUR_KEY_ID') { alert('Razorpay not yet configured.\n\nPay via UPI QR or contact: yashpdelhi@gmail.com'); return; }
-  const options = { key: rzpKeyId, amount: 9990, currency: 'INR', name: 'Energy Savant', description: 'Consulting Session — Yash Pandey', theme: { color: '#0284c7' },
-    handler: function(r) { alert('✅ Payment done!\nID: ' + r.razorpay_payment_id + '\nEmail this to yashpdelhi@gmail.com to confirm your session.'); }
-  };
-  try { const rzp = new window.Razorpay(options); rzp.open(); } catch(e) { alert('Please use UPI QR or email yashpdelhi@gmail.com'); }
-}
-// ── ACTIVE NAV ──
-const sections = document.querySelectorAll('section[id]');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 130) current = s.id; });
-  document.querySelectorAll('.nav-links a').forEach(a => {
-    a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--blue)' : '';
-  });
-});
-
-// ── CONTACT FORM ──
-function handleSubmit(e) {
-  e.preventDefault();
-  const btn = e.target;
-  const orig = btn.textContent;
-  btn.textContent = '✓ Message Sent!';
-  btn.style.background = '#065f46';
-  setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 3500);
-}
-
-// ── INIT: load English on page load ──
-document.addEventListener('DOMContentLoaded', function() {
-  setLang('en');
-});
-</script>
-</body>
-</html>
+  if (rzpKeyId === 'YOUR_KEY_ID') { alert('Razorpay not yet configured
