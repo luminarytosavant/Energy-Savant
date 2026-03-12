@@ -523,8 +523,10 @@
   .footer-text span { color:var(--blue-light); }
 
   /* ── ANIMATIONS ── */
-  .fade-up { opacity:0; transform:translateY(22px); transition:opacity 0.7s ease, transform 0.7s ease; }
-  .fade-up.visible { opacity:1; transform:translateY(0); }
+  /* fade-up: visible by default (safe). JS adds js-anim to body to enable animation */
+  .fade-up { opacity:1; transform:none; }
+  .js-anim .fade-up { opacity:0; transform:translateY(22px); transition:opacity 0.65s ease, transform 0.65s ease; }
+  .js-anim .fade-up.visible { opacity:1; transform:none; }
 
   /* ── RESPONSIVE ── */
   @media(max-width:920px){
@@ -536,6 +538,20 @@
     nav .nav-links { display:none; }
     .container { padding:0 1.5rem; }
     .payment-grid { grid-template-columns:1fr !important; }
+  }
+
+  /* ── HAMBURGER MENU ── */
+  .hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:0.3rem; }
+  .hamburger span { display:block; width:24px; height:2px; background:var(--ocean); border-radius:2px; transition:all 0.3s; }
+  .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity:0; }
+  .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+  @media(max-width:920px){
+    .hamburger { display:flex; }
+    nav .nav-links { display:none; position:fixed; inset:0; background:rgba(255,255,255,0.98); flex-direction:column; align-items:center; justify-content:center; gap:2.5rem; z-index:200; backdrop-filter:blur(8px); }
+    nav .nav-links.open { display:flex; }
+    nav .nav-links li a { font-size:1.3rem; color:var(--ocean); font-weight:700; }
+    .nav-cta { display:none; }
   }
 </style>
 <script src="https://checkout.razorpay.com/v1/checkout.js" async></script>
@@ -577,7 +593,10 @@
 <!-- NAV -->
 <nav>
   <a href="#hero" class="nav-logo">Yash <span>Pandey</span></a>
-  <ul class="nav-links">
+  <button class="hamburger" id="hamburger" aria-label="Open menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links">
     <li><a href="#about" data-i18n="nav_about">About</a></li>
     <li><a href="#services" data-i18n="nav_services">Services</a></li>
     <li><a href="#aiml" data-i18n="nav_aiml">AI/ML</a></li>
@@ -1267,7 +1286,7 @@
         <div class="ref-name">Prof. Hitoshi Haga</div>
         <div class="ref-title">Supervisor · Research Assistant</div>
         <div class="ref-inst">Dept. of Electrical &amp; Electronic Engineering<br>Shizuoka University, Hamamatsu</div>
-        <a href="mailto:haga.hitoshi@shizuoka.ac.jp" class="ref-email">haga.hitoshi@shizuoka.ac.jp</a>
+        <a href="/cdn-cgi/l/email-protection#ea828b8d8bc482839e85998283aa998283909f85818bc48b89c4809a" class="ref-email"><span class="__cf_email__" data-cfemail="5d353c3a3c73353429322e35341d2e3534272832363c733c3e73372d">[email&#160;protected]</span></a>
       </div>
 
       <div class="ref-card">
@@ -1276,7 +1295,7 @@
         <div class="ref-name">Assoc. Prof. Hironobu Matsuo</div>
         <div class="ref-title">PhD Supervisor · Lab Director</div>
         <div class="ref-inst">Dept. of Electronics &amp; Electrical Engineering<br>Shizuoka University, Hamamatsu</div>
-        <a href="mailto:matsuo.hironobu@shizuoka.ac.jp" class="ref-email">matsuo.hironobu@shizuoka.ac.jp</a>
+        <a href="/cdn-cgi/l/email-protection#503d312423253f7e3839223f3e3f3225102338392a253f3b317e31337e3a20" class="ref-email"><span class="__cf_email__" data-cfemail="7914180d0a0c165711100b1617161b0c390a1110030c16121857181a571309">[email&#160;protected]</span></a>
       </div>
 
       <div class="ref-card">
@@ -1285,7 +1304,7 @@
         <div class="ref-name">Dr. Sushil Yadav Yamamoto</div>
         <div class="ref-title">Registered Consultant</div>
         <div class="ref-inst">Ministry of Agriculture, Forest &amp; Fisheries (MAAF), Japan</div>
-        <a href="mailto:japandevelopment6@gmail.com" class="ref-email">japandevelopment6@gmail.com</a>
+        <a href="/cdn-cgi/l/email-protection#9ef4ffeefff0fafbe8fbf2f1eef3fbf0eaa8def9f3fff7f2b0fdf1f3" class="ref-email"><span class="__cf_email__" data-cfemail="e3898293828d878695868f8c938e868d97d5a3848e828a8fcd808c8e">[email&#160;protected]</span></a>
       </div>
 
       <!-- India refs -->
@@ -1295,7 +1314,7 @@
         <div class="ref-name">Prof. Satyendra Patnaik</div>
         <div class="ref-title">Advisor to Founder</div>
         <div class="ref-inst">KIIT &amp; KISS University, Bhubaneswar, India</div>
-        <a href="mailto:satyendrapatnaik@kiit.ac.in" class="ref-email">satyendrapatnaik@kiit.ac.in</a>
+        <a href="/cdn-cgi/l/email-protection#9eedffeae7fbf0faecffeeffeaf0fff7f5def5f7f7eab0fffdb0f7f0" class="ref-email"><span class="__cf_email__" data-cfemail="e59684919c808b8197849584918b848c8ea58e8c8c91cb8486cb8c8b">[email&#160;protected]</span></a>
       </div>
 
       <div class="ref-card">
@@ -1304,7 +1323,7 @@
         <div class="ref-name">Prof. Byomkesh Nayak</div>
         <div class="ref-title">Dean, School of Electrical Engineering</div>
         <div class="ref-inst">KIIT University, Bhubaneswar, India</div>
-        <a href="mailto:dean.electrical@kiit.ac.in" class="ref-email">dean.electrical@kiit.ac.in</a>
+        <a href="/cdn-cgi/l/email-protection#751110141b5b1019101601071c161419351e1c1c015b14165b1c1b" class="ref-email"><span class="__cf_email__" data-cfemail="c5a1a0a4abeba0a9a0a6b1b7aca6a4a985aeacacb1eba4a6ebacab">[email&#160;protected]</span></a>
       </div>
 
       <div class="ref-card">
@@ -1323,7 +1342,7 @@
         <div class="ref-name">Prof. Dr. Jyoti Prakash Maity</div>
         <div class="ref-title">Earth &amp; Environmental Science</div>
         <div class="ref-inst">National Chung Cheng University &amp; KIIT University</div>
-        <a href="mailto:jyoti_maity@yahoo.com" class="ref-email">jyoti_maity@yahoo.com</a>
+        <a href="/cdn-cgi/l/email-protection#274d5e48534e784a464e535e675e464f48480944484a" class="ref-email"><span class="__cf_email__" data-cfemail="b7ddced8c3dee8dad6dec3cef7ced6dfd8d899d4d8da">[email&#160;protected]</span></a>
       </div>
 
       <div class="ref-card">
@@ -1332,7 +1351,7 @@
         <div class="ref-name">Dr. Congo Tak Shing Ching</div>
         <div class="ref-title">Professor, Biomedical Engineering</div>
         <div class="ref-inst">National Chung Hsing University, Taiwan</div>
-        <a href="mailto:tsching@nchu.edu.tw" class="ref-email">tsching@nchu.edu.tw</a>
+        <a href="/cdn-cgi/l/email-protection#abdfd8c8c3c2c5ccebc5c8c3de85cecfde85dfdc" class="ref-email"><span class="__cf_email__" data-cfemail="324641515a5b5c55725c515a471c5756471c4645">[email&#160;protected]</span></a>
       </div>
 
       <!-- Sweden ref -->
@@ -1342,7 +1361,7 @@
         <div class="ref-name">Dr. Ashutosh Tiwari</div>
         <div class="ref-title">Founder &amp; Chairman, IAAM</div>
         <div class="ref-inst">International Association of Advanced Materials, Ulrika, Sweden</div>
-        <a href="mailto:director@iaam.se" class="ref-email">director@iaam.se</a>
+        <a href="/cdn-cgi/l/email-protection#63070a110600170c11230a02020e4d1006" class="ref-email"><span class="__cf_email__" data-cfemail="debab7acbbbdaab1ac9eb7bfbfb3f0adbb">[email&#160;protected]</span></a>
       </div>
 
     </div>
@@ -1416,7 +1435,7 @@
 
 <!-- PAYMENT SCRIPTS -->
 <!-- Replace YOUR_RAZORPAY_KEY_ID below with your actual key from Razorpay Dashboard → Settings → API Keys -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
 const RAZORPAY_KEY = 'YOUR_RAZORPAY_KEY_ID'; // ← REPLACE THIS after Razorpay KYC approval
 // Stripe payment links — replace with your actual Stripe Payment Link URLs
@@ -2862,6 +2881,30 @@ function setLang(lang) {
   }
 })();
 
+// Enable animations safely after JS loads
+document.body.classList.add('js-anim');
+
+// Fallback: force-show any missed fade-ups after 1.5s (safety net)
+setTimeout(() => {
+  document.querySelectorAll('.fade-up:not(.visible)').forEach(el => el.classList.add('visible'));
+}, 1500);
+
+function toggleMenu() {
+  const btn = document.getElementById('hamburger');
+  const menu = document.getElementById('nav-links');
+  btn.classList.toggle('open');
+  menu.classList.toggle('open');
+  document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+}
+// Close menu on nav link click
+document.querySelectorAll('#nav-links a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('nav-links').classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) entry.target.classList.add('visible');
@@ -2960,32 +3003,4 @@ const SecurityLayer = (() => {
 
   // Soft right-click block on content cards
   document.addEventListener('contextmenu', e => {
-    if (e.target.closest('.paper-card,.book-card,.srv-card')) e.preventDefault();
-  });
-
-  window.addEventListener('load', async () => {
-    await storeIntegrityBaseline();
-    const ok = await verifyIntegrity();
-    if (!ok) console.warn('[Security] Integrity check failed — possible tamper detected.');
-  });
-
-  return { encryptData, decryptData, hashSection, verifyIntegrity };
-})();
-
-// ── PAYMENT ──
-function copyUPI() {
-  const id = 'yashpdelhi@okaxis';
-  try {
-    navigator.clipboard.writeText(id).then(() => {
-      const btn = document.getElementById('copy-upi-btn');
-      if (btn) { btn.textContent = '✓ Copied!'; btn.style.background = 'rgba(134,239,172,0.2)'; btn.style.borderColor = 'rgba(134,239,172,0.4)'; btn.style.color = '#86efac'; }
-      setTimeout(() => { if (btn) { btn.textContent = 'Copy'; btn.style.background = ''; btn.style.borderColor = ''; btn.style.color = '#7dd3fc'; } }, 2500);
-    });
-  } catch(e) {
-    const el = document.getElementById('upi-id-text');
-    if (el) { const range = document.createRange(); range.selectNode(el); window.getSelection().removeAllRanges(); window.getSelection().addRange(range); }
-  }
-}
-function launchRazorpay() {
-  const rzpKeyId = 'YOUR_KEY_ID';
-  if (rzpKeyId === 'YOUR_KEY_ID') { alert('Razorpay not yet configured
+    if (e.target.closest('
